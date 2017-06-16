@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <div @click="toggleSideMenu" class="navicon">        
-        <icon name="bars" scale="3"></icon>
-
+        <icon name="bars" scale="2"></icon>
     </div>
     <transition name="slide">
-		  <side_menu v-if="isShowingSideMenu"></side_menu>      
+		  <side_menu 
+        v-if="isShowingSideMenu" 
+        v-on:closeMenu="toggleSideMenu"
+      ></side_menu>      
     </transition>
 
 
@@ -53,7 +55,9 @@ export default {
 }
 
 .navicon{
-
+  position:absolute;
+  left:30px;
+  top:30px;
   img{
     width:30px;
     height:30px;

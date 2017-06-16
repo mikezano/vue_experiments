@@ -1,6 +1,8 @@
 <template>
 	<div class="side-menu">
-		<icon name="close" class="close-icon"></icon>
+		<div  @click="close">
+			<icon name="close" class="close-icon" ></icon>
+		</div>
 		<div class='header'>			
 			<img src="./../assets/logo.png">
 			<p>Experiments</p>
@@ -23,6 +25,11 @@ import 'vue-awesome/icons/close'
 import icon from 'vue-awesome/components/Icon'
 
 export default {
+	methods: {
+		close () {
+			 this.$emit('closeMenu');
+		}
+	},
   components:{
 		icon
 	}
