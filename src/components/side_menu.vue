@@ -9,12 +9,10 @@
 		</div>
 		
 		<ul>
-			<li>
-				<a href="#/environment">Environment</a>
-			</li>
-			<li>
-				<a href="#/async">Async</a>
-			</li>
+			<li><a href="#/environment">Environment</a></li>
+			<li><a href="#/async">Async</a></li>
+			<li><a href="#/background">Animated Background</a></li>
+
 		</ul>
 	</div>
 </template>
