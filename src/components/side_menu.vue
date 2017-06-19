@@ -49,11 +49,22 @@ $base2: hsla(211, 28%, 29%, 1);
 .side-menu{
 	width:200px;
 	position:absolute;
+	z-index:100;
 	left:0px;
 	top:0;
 	bottom:0;
 	//border-right:1px solid darkgray;
-	background: linear-gradient(to right, lightgray, gray);
+  $yellow: hsla(0, 0%, 13%,1);
+  $yellow2: hsla(0, 0%, 17%, 1);
+  $yellow3: rgba(240,166,17,0);
+background:
+  radial-gradient(circle farthest-side at 0% 50%, $yellow2 23.5%, $yellow3 0)21px 30px,
+  radial-gradient(circle farthest-side at 0% 50%, $yellow 24%, $yellow3 0) 19px 30px,
+  linear-gradient($yellow2 14%, $yellow3 0, $yellow3 85%, $yellow2 0)0 0,
+  linear-gradient(150deg,$yellow2 24%,$yellow 0,$yellow 26%, $yellow3 0, $yellow3 74%,$yellow 0,$yellow 76%, $yellow2 0)0 0,
+  linear-gradient(30deg,$yellow2 24%,$yellow 0,$yellow 26%, $yellow3 0, $yellow3 74%,$yellow 0,$yellow 76%, $yellow2 0)0 0,
+  linear-gradient(90deg,$yellow 2%,$yellow2 0,$yellow2 98%,$yellow 0%)0 0 $yellow2;
+background-size:40px 60px;
 
 	color:white;
 	box-shadow:2px 2px 20px gray;
