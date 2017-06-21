@@ -12,6 +12,7 @@
 			<li><a href="#/environment">Environment</a></li>
 			<li><a href="#/async">Async</a></li>
 			<li><a href="#/background">Animated Background</a></li>
+			<li><a href="#/animations">Vue Animation</a></li>
 
 		</ul>
 	</div>

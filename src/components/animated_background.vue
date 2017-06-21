@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $base1: hsla(153, 50%, 98%, 1);
 $base2: hsla(211, 28%, 29%, 1);
 
