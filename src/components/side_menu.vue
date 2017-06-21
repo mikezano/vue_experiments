@@ -13,6 +13,7 @@
 			<li><a href="#/async">Async</a></li>
 			<li><a href="#/background">Animated Background</a></li>
 			<li><a href="#/animations">Vue Animation</a></li>
+			<li><a href="#/sara">sara</a></li>
 
 		</ul>
 	</div>

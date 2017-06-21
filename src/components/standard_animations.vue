@@ -5,18 +5,19 @@
             <transition name="fade">
                 <div v-if="isVisible" class="emoji">😪</div>
             </transition>
-
         </div>
         <div class="cell">
-            <button @click="toggleFade">Fade {{isVisible? 'Out': 'In'}}</button>
-            <transition name="fade">
-                <div v-if="isVisible" class="emoji">😀</div>
+            <button @click="toggleInOut">In Out</button>
+            <transition name="fade" mode="in-out">
+                <div v-if="isInOut" class="emoji" key="before">🤑</div>
+                <div v-else class="emoji" key="after">☹️</div>
             </transition>
         </div>      
         <div class="cell">
-            <button @click="toggleFade">Fade {{isVisible? 'Out': 'In'}}</button>
-            <transition name="fade">
-                <div v-if="isVisible" class="emoji">🤑</div>
+            <button @click="toggleUpsideDown">Flip</button>
+            <transition name="flip" mode="out-in">
+                <div v-if="isUpsideDown" key="before" class="emoji">😀</div>
+                <div v-else key="after" class="emoji">🙃</div>
             </transition>
         </div>                  
         <div class="cell">
@@ -66,13 +67,21 @@ import icon from 'vue-awesome/components/Icon'
 export default {
     data: () => {
         return {
-            isVisible:true
+            isVisible:true,
+            isUpsideDown: false,
+            isInOut:true
         }
     },
 	methods: {
 		toggleFade () {
 			 this.isVisible = !this.isVisible;
-		}
+		},
+        toggleUpsideDown () {
+            this.isUpsideDown = !this.isUpsideDown;
+        },
+        toggleInOut () {
+            this.isInOut = !this.isInOut;
+        }
 	},
   components:{
 		icon
@@ -81,6 +90,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+$vue_green: hsla(153, 50%, 48%, 1);
 
 .grid{
 	position:absolute;
@@ -93,14 +104,14 @@ export default {
 	grid-gap:40px;
 
 	.cell{
-
+        border:1px solid black;
         display:flex;
         flex-direction: column-reverse;
         align-items: center;
 
         button{
-            border:1px solid green;
-            background:radial-gradient(green, darkgreen);
+            border:1px solid $vue_green;
+            background:radial-gradient($vue_green, darken($vue_green, 20%));
             border-radius:4px;
             font-size:20px;
             color:white;
@@ -118,6 +129,19 @@ export default {
 }
 .fade-enter, .fade-leave-to{
     opacity:0;
+}
+
+.flip-enter-active {
+  transition: all .2s cubic-bezier(0.55, 0.085, 0.68, 0.53); //ease-in-quad
+}
+
+.flip-leave-active {
+  transition: all .25s cubic-bezier(0.25, 0.46, 0.45, 0.94); //ease-out-quad
+}
+
+.flip-enter, .flip-leave-to {
+  transform: scaleY(0) translateZ(0);
+  opacity: 0;
 }
 </style>
 
