@@ -21,15 +21,15 @@
             </transition>
         </div>                  
         <div class="cell">
-            <button @click="toggleFade">Fade {{isVisible? 'Out': 'In'}}</button>
-            <transition name="fade">
-                <div v-if="isVisible" class="emoji">😡</div>
+            <button @click="toggleSlide">Sliding {{isSliding? 'Out': 'In'}}</button>
+            <transition name="slide">
+                <div v-if="!isSliding" class="emoji">😡</div>
             </transition>
         </div>
         <div class="cell">
-            <button @click="toggleFade">Fade {{isVisible? 'Out': 'In'}}</button>            
-            <transition name="fade">
-                <div v-if="isVisible" class="emoji">😲</div>
+            <button @click="toggleZoom">Zoom {{isZooming? 'Out': 'In'}}</button>            
+            <transition name="zoom">
+                <div v-if="!isZooming" class="emoji">😲</div>
             </transition>
         </div>
         <div class="cell">
@@ -69,7 +69,9 @@ export default {
         return {
             isVisible:true,
             isUpsideDown: false,
-            isInOut:true
+            isInOut:true,
+            isSliding:false,
+            isZooming:false
         }
     },
 	methods: {
@@ -81,6 +83,12 @@ export default {
         },
         toggleInOut () {
             this.isInOut = !this.isInOut;
+        },
+        toggleSlide () {
+            this.isSliding = !this.isSliding;
+        },
+        toggleZoom () {
+            this.isZooming = !this.isZooming;
         }
 	},
   components:{
@@ -96,14 +104,16 @@ $vue_green: hsla(153, 50%, 48%, 1);
 .grid{
 	position:absolute;
 	left:0; right:0; top:0; bottom:0;
-	width:500px;
-	height:500px;
+    width:500px;
+    height:500px;
 	margin:auto;
 	display:grid;
 	grid-template-columns: 33.3% 33.3% 33.3%;
-	grid-gap:40px;
+    grid-template-rows:  33.3% 33.3% 33.3%;
+	//grid-gap:40px;
 
 	.cell{
+        position:relative;
         border:1px solid black;
         display:flex;
         flex-direction: column-reverse;
@@ -143,6 +153,34 @@ $vue_green: hsla(153, 50%, 48%, 1);
   transform: scaleY(0) translateZ(0);
   opacity: 0;
 }
+
+.slide-enter-active, .slide-leave-active{
+  transition: all 0.5s ease-out;
+}
+
+.slide-enter, .slide-leave-to{
+    opacity:0;
+}
+
+.slide-enter{
+    transform: translateX(-20px);
+}
+.slide-leave-to{
+    transform: translateX(20px);
+}
+
+.zoom-enter-active, .zoom-leave-active{
+  transition: all 0.5s ease-out;
+}
+
+.zoom-enter, .zoom-leave-to{
+    opacity:0;
+}
+
+.zoom-enter, .zoom-leave-to{
+    transform: scale(.1);
+}
+
 </style>
 
 

@@ -3,7 +3,7 @@
     <div @click="toggleSideMenu" class="navicon">        
         <icon name="bars" scale="2"></icon>
     </div>
-    <transition name="slide">
+    <transition name="slide-menu">
 		  <side_menu 
         v-if="isShowingSideMenu" 
         v-on:closeMenu="toggleSideMenu"
@@ -79,11 +79,11 @@ background-size:40px 60px;
   }
 }
 
-.slide-enter-active, .slide-leave-active{
+.slide-menu-enter-active, .slide-menu-leave-active{
   transition: all 0.5s ease-out;
 }
 
-.slide-enter, .slide-leave-to{transform: translateX(-200px);}
+.slide-menu-enter, .slide-menu-leave-to{transform: translateX(-200px);}
 
 
 </style>
