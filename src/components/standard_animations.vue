@@ -33,9 +33,9 @@
             </transition>
         </div>
         <div class="cell">
-            <button @click="toggleFade">Fade {{isVisible? 'Out': 'In'}}</button>            
-            <transition name="fade">
-                <div v-if="isVisible" class="emoji">😰</div>
+            <button @click="toggleSquare">Square</button>            
+            <transition name="square">
+                <div v-if="isSquare" class="emoji">😰</div>
             </transition>
         </div> 
         <div class="cell">
@@ -71,7 +71,8 @@ export default {
             isUpsideDown: false,
             isInOut:true,
             isSliding:false,
-            isZooming:false
+            isZooming:false,
+            isSquare:true
         }
     },
 	methods: {
@@ -89,6 +90,9 @@ export default {
         },
         toggleZoom () {
             this.isZooming = !this.isZooming;
+        },
+        toggleSquare() {
+            this.isSquare = !this.isSquare;
         }
 	},
   components:{
@@ -181,6 +185,23 @@ $vue_green: hsla(153, 50%, 48%, 1);
     transform: scale(.1);
 }
 
+.square-enter-active, .square-leave-active{
+    animation:square 1s linear;
+}
+
+
+
+@mixin xy($x, $y){
+    transform: translateX($x) translateY($y);
+}
+@keyframes square {
+    0%  {   @include xy(0, 0);}
+    20% {   @include xy(-50px, 0);}
+    40% {   @include xy(-50px, -50px);}
+    60% {   @include xy(50px, -50px);}
+    80% {   @include xy(50px, 0);}
+    100%{   @include xy(0, 0);}
+}
 </style>
 
 
