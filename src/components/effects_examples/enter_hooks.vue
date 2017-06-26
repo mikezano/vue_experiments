@@ -2,7 +2,6 @@
     .cell
         button(@click="toggleEnterHooks") Enter Hooks
         transition(
-            name="fade"
             v-on:before-enter="beforeEnter"
             v-on:enter="enter"
             v-on:after-enter="afterEnter"
@@ -12,6 +11,9 @@
 
 
 <script>
+
+import Velocity from 'velocity-animate';
+
 export default {
   data: () => {
       return {
@@ -23,19 +25,28 @@ export default {
             this.isEnteringHooks = !this.isEnteringHooks;
         },
         beforeEnter(){
-            alert('beforeEnter');
+           // alert('beforeEnter');
+           
         },
-        enter(){
-            alert('enter');
+        enter(el, done){
+            //
+            Velocity(el, {opacity: 1, fontSize: '10em'}, {duration:100});
+            Velocity(el, { fontSize: '4em' }, { duration:100, complete: done });
         },
-        afterEnter(){
-            alert('afterEnter');
+        afterEnter (el, done){
+            Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration:500 })
+            Velocity(el, { rotateZ: '100deg' }, { loop: 2, duration:500 })
+            Velocity(el, {
+                rotateZ: '45deg',
+                translateY: '30px',
+                translateX: '30px',
+                opacity: 0
+            }, { duration:500, complete: done })
         },
         enterCancelled(){
             alert('enterCancelled');
         }
     }
-  
 }
 </script>
 

@@ -56,13 +56,15 @@ $vue_green: hsla(153, 50%, 48%, 1);
 
 .grid{
 	position:absolute;
-	left:0; right:0; top:0; bottom:0;
+	left:0; right:0; top:100px;
     width:500px;
     height:500px;
 	margin:auto;
 	display:grid;
 	grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows:  33.3% 33.3% 33.3%;
+    grid-gap:10px;
+
 
     @import '../sass/global';
 
