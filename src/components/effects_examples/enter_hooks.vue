@@ -34,14 +34,14 @@ export default {
             Velocity(el, { fontSize: '4em' }, { duration:100, complete: done });
         },
         afterEnter (el, done){
-            Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration:500 })
-            Velocity(el, { rotateZ: '100deg' }, { loop: 2, duration:500 })
+            Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration:1000 });
+            Velocity(el, { rotateZ: '100deg' }, { loop: 2, duration:100 });
             Velocity(el, {
                 rotateZ: '45deg',
                 translateY: '30px',
                 translateX: '30px',
                 opacity: 0
-            }, { duration:500, complete: done })
+            }, { duration:500, complete: done });
         },
         enterCancelled(){
             alert('enterCancelled');
