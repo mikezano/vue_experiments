@@ -27,10 +27,10 @@
 			stroke="hsla(322, 40%,49%, 1)"
 			stroke-width="10")   
 
-		rect(class="blue"  width="100" height="100" x="20"  y="50" rx="10", ry="10")
-		rect(class="blue" width="100" height="150" x="40"  y="25" rx="10", ry="10")
-		rect(class="blue" width="120" height="50"  x="110" y="50" rx="10", ry="10")
-		rect(class="blue" width="200" height="50"  x="50"  y="33" rx="10", ry="10")
+		rect(class="blue a"  width="100" height="100" x="20"  y="50" rx="10", ry="10")
+		rect(class="blue b" width="100" height="150" x="40"  y="25" rx="10", ry="10")
+		rect(class="blue c" width="120" height="50"  x="110" y="70" rx="10", ry="10")
+		rect(class="blue d" width="200" height="50"  x="50"  y="33" rx="10", ry="10")
 </template>
 
 
@@ -50,8 +50,12 @@ export default {
 	sceneOne(){
 		var tl = new TimelineMax();
 		tl.to(".c1", 1, {x:400, bezier:[{x:100, y:100}, {x:0, y:200}, {x:-100, y:100}, {x:0, y:0}], ease: Power4.easeOut});
-		tl.to(".blue", 1, {x:10, ease: Power1.easeOut});
+
 		tl.add("one");
+		tl.to(".blue.a", 1, {x:10, ease: Power1.easeOut}, "one");
+		tl.to(".blue.b", 8, {y:30, ease: Power1.easeOut}, "one");
+		tl.to(".blue.c", 4, {x:5, ease: Power1.easeOut}, "one");
+		tl.to(".blue.d", 6, {y:8, ease: Power1.easeOut}, "one");		
 		tl.to(".c2", 1, {x:300, ease: Power4.easeOut}, "one");;
 		tl.to(".c3", 1, {x:300, ease: Power4.easeOut}, "one");
 		return tl;
@@ -59,6 +63,10 @@ export default {
 	sceneTwo(){
 		var tl = new TimelineMax();
 		tl.to(".c1", 1, {x:200, ease: Power4.easeOut});
+		tl.to(".blue.a", 1, {x:0, ease: Power1.easeOut}, "one");
+		tl.to(".blue.b", 1, {y:0, ease: Power1.easeOut}, "one");
+		tl.to(".blue.c", 1, {x:0, ease: Power1.easeOut}, "one");
+		tl.to(".blue.d", 2, {y:0, ease: Power1.easeOut}, "one");
 		tl.add("out");  
 		tl.to(".c2", 1, {scale:1.5, ease: Power4.easeOut}, "out");
 		tl.to(".c3", 1, {x:0, ease: Power4.easeOut}, "out");  
@@ -79,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 
-$intelBlue: hsla(206, 100%, 39%, .7);
+$intelBlue: hsla(206, 100%, 39%, .5);
 .blue{
 	fill: $intelBlue;
 	stroke: darken($intelBlue, 10%);
