@@ -6,6 +6,7 @@ import animated_background from '@/components/animated_background'
 import standard_animations from '@/components/standard_animations'
 import sara from '@/components/sara'
 import gsap from '@/components/gsap'
+import gsap_auto from '@/components/gsap_auto'
 
 Vue.use(Router)
 
@@ -16,6 +17,7 @@ export default new Router({
     {path: '/background',     name: 'Animated Background',    component: animated_background},
     {path: '/animations',     name: 'Vue Animations',         component: standard_animations},
     {path: '/gsap',           name: 'Green Sock',             component: gsap},
+    {path: '/gsap_auto',      name: 'Green Sock Auto',        component: gsap_auto},
     {path: '/sara',     name: 'Sara',         component: sara}
   ]
 })

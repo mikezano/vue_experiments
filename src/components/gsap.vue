@@ -1,7 +1,7 @@
 <template lang="pug">
 	svg(class="magnifier" 
  
-		viewBox="0 0 1000 1000")
+		viewBox="0 0 400 400")
 		circle(
 			class="c1" 
 			cx="100" 
