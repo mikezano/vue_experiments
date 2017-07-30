@@ -11,7 +11,7 @@
 
 
 <script>
-import {TimelineMax} from 'gsap';
+import {TimelineMax, TweeMax} from 'gsap';
 
 export default {
   data: () => {
@@ -48,17 +48,36 @@ export default {
 		tl.to(".c3", 1, {x:0, ease: Power4.easeOut}, "out");  
 		return tl;
 	},
-    singleScene(selector){
-        var tl = new TimelineMax();
+    complete(id, x, y){
+        var rect = document.getElementById(id);
+        var currX = rect.getAttributeNS(null, "x");
+        var currY = rect.getAttributeNS(null, "y");
+        var xOrigin = parseInt(currX) + parseInt(x);
+        var yOrigin = parseInt(currY) + parseInt(y);
+        //debugger;
+        rect.setAttributeNS(null, "x", xOrigin);
+        rect.setAttributeNS(null, "y", yOrigin);
+        rect.setAttributeNS(null, "data-svg-origin", xOrigin+" "+yOrigin);
+        rect.removeAttributeNS(null, "transform");
+        this.singleScene(id, xOrigin, yOrigin);
+
+        //tl.restart();
+        //tl.updateTo({x:20});
+    },
+    singleScene(id, xOrigin, yOrigin){
         var x = this.randomValue(50) * (Math.random() < 0.5 ? -1 : 1);
         var y = this.randomValue(50) * (Math.random() < 0.5 ? -1 : 1);
         var duration = this.randomValue(10)+1;
-        debugger;
-        tl.to("."+selector, duration, {x:x, y:y, ease: Power1.easeOut});
-        return tl;
+       // debugger;
+        TweenMax.to("#"+id, 3, {
+            x:x, 
+            y:y, 
+            ease: "linear",
+            onComplete:()=>{this.complete(id, x, y)}
+        });
     },
 	master(){
-		var master = new TimelineMax({repeat: -1});
+		var master = new TweenMax({repeat: -1});
 		master.add(this.sceneOne(), "scene1")
 			.add(this.sceneTwo(), "scene2");	
 	},
@@ -76,7 +95,8 @@ export default {
         el.setAttributeNS(null, "y", y);
         el.setAttributeNS(null, "rx", 10);
         el.setAttributeNS(null, "ry", 10);
-        el.setAttributeNS(null, "class", "blue"+x.toString()+y.toString()+" blue");
+        el.setAttributeNS(null, "class", "blue");
+        el.setAttributeNS(null, "id", "blue"+x.toString()+y.toString());
 
         return el;
     },
@@ -85,15 +105,13 @@ export default {
     },
     createRectangles(){
         var doc = document.getElementById("main");
-        var master = new TimelineMax({repeat: -1});
+        //var master = new TimelineMax({repeat: -1});
  
-        for(var i=0; i<50; i++){
+        for(var i=0; i<10; i++){
             var rect = this.createRectangle();
-            doc.appendChild(rect); 
-            var className = rect.classList[0];           
-            master.add(this.singleScene(className),"scene");
+            doc.appendChild(rect);        
+            this.singleScene(rect.id, rect.getAttributeNS(null, "x"), rect.getAttributeNS(null, "y"));
         }
-
     }
   },
 	mounted(){
