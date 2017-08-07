@@ -16,6 +16,7 @@
 			<li><a href="#/gsap">Green Sock</a></li>
 			<li><a href="#/gsap_auto">GSA</a></li>
 			<li><a href="#/sara">sara</a></li>
+			<li><a href="#/guess_number">Guess Number</a></li>
 
 		</ul>
 	</div>

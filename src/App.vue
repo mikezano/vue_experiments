@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <div @click="toggleSideMenu" class="navicon">        
         <icon name="bars" scale="2"></icon>
     </div>
@@ -36,6 +36,19 @@ export default {
   methods: {
     toggleSideMenu(){
       this.isShowingSideMenu = !this.isShowingSideMenu;
+
+      if(this.isShowingSideMenu == true){
+        document
+          .getElementById("app")
+          //need the capture:true to prevent immediate fire of close
+          .addEventListener("click", this.closeSideMenu, {capture:true});
+      }
+    },
+    closeSideMenu(){
+      this.isShowingSideMenu = false;
+      document
+        .getElementById("app")
+        .removeEventListener("click", this.closeSideMenu);
     }
   },
   mounted () {
