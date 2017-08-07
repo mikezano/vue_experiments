@@ -5,6 +5,7 @@
         <label>(Tries: {{tries}})</label>
         </label>
         <input 
+            class="guessed-number"
             type="number" 
             ref='guessedNumberElement'
             @keyup.enter="focus"
@@ -15,11 +16,12 @@
             @click="checkGuess">
             Guess
         </button>
-        <label v-if="guessDirection =='HIGHER'">Guess Higher!</label>
-        <label v-if="guessDirection =='LOWER'">Guess Lower!</label>
+        <label class="guess-direction" v-if="guessDirection =='HIGHER'">Guess Higher!</label>
+        <label class="guess-direction" v-if="guessDirection =='LOWER'">Guess Lower!</label>
         <label v-if="isCorrectlyGuessed == true">You Got It!</label>
 
         <button
+            class="try-again"
             v-if="isCorrectlyGuessed"
             @click="reset">
             Try Again?
@@ -92,14 +94,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 $base1: hsla(153, 50%, 98%, 1);
 $base2: hsla(211, 28%, 29%, 1);
 
 #guessing_number {
+    font-family: 'Pacifico', cursive;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size:40px;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items: center;
+
+    .guessed-number{
+        width:230px;
+        text-align:center;
+    }
+
+    .guess-direction{
+        font-size:30px;
+    }
 }
 
 </style>
