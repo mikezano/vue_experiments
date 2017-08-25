@@ -8,6 +8,7 @@ import sara from '@/components/sara'
 import gsap from '@/components/gsap'
 import gsap_auto from '@/components/gsap_auto'
 import guess_number from '@/components/guess_number'
+import animations from '@/components/animations'
 
 Vue.use(Router)
 
@@ -20,6 +21,7 @@ export default new Router({
     {path: '/gsap',           name: 'Green Sock',             component: gsap},
     {path: '/gsap_auto',      name: 'Green Sock Auto',        component: gsap_auto},
     {path: '/sara',           name: 'Sara',                   component: sara},
-    {path: '/guess_number',  name: 'Guess Number',           component: guess_number} 
+    {path: '/guess_number',   name: 'Guess Number',           component: guess_number},
+    {path: '/animationss',     name: 'Animations',             component: animations}
   ]
 })

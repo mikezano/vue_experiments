@@ -1,10 +1,5 @@
 <template lang="pug">
-    .cell
-        button(@click="toggleFading") Fade
-        transition(name="fade")
-            div(v-if="isFading" class="emoji") 😪
-        pre
-            testing
+    h1 Fade
 </template>
 
 
