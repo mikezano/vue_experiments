@@ -25,8 +25,8 @@ export default new Router({
     {path: '/sara',           name: 'Sara',                   component: sara},
     {path: '/guess_number',   name: 'Guess Number',           component: guess_number},
     {
-      path: '/animationss',     
-      name: 'Animations',             
+      path: '/animationss/',     
+
       component: animations,
       children: [
         {path: 'fade',   name: 'Animation Fade', component: fade},

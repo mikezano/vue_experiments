@@ -1,10 +1,14 @@
 <template lang="pug">
     .container
         h1 Animation Examples
-        select(@change="selectAnimation($event)")
+        select
             option(selected) Select Animation
-            option fade
-            option zoom
+            option
+                router-link(:to="{path: '/fade'}") Fade
+            option
+                router-link(:to="{path: 'zoom'}") Zoom
+        router-link(:to="{path: 'fade'}") Fade
+        router-link(:to="{path: 'animationss/zoom'}") Zoom
         router-view
 </template>
 
