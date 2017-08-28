@@ -1,6 +1,7 @@
 <template lang="pug">
 	.container
-
+		router-link(:to="{path: 'fade'}") Fade
+		router-link(:to="{path: 'zoom'}") Zoom
 		.cell
 			.transition-container
 				transition(name="fade")

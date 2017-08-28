@@ -1,14 +1,18 @@
 <template lang="pug">
     .container
         h1 Animation Examples
-        select
+        select(@change="selectAnimation($event)")
             option(selected) Select Animation
+            option fade
+            option zoom
             option
                 router-link(:to="{path: '/fade'}") Fade
             option
                 router-link(:to="{path: 'zoom'}") Zoom
-        router-link(:to="{path: 'fade'}") Fade
-        router-link(:to="{path: 'animationss/zoom'}") Zoom
+        //router-link(:to="{path: 'animationss/fade'}") Fade
+        //router-link(:to="{path: 'animationss/zoom'}") Zoom
+        a(href="#/animationss/fade") Fade
+        a(href="#/animationss/zoom") Zoom
         router-view
 </template>
 
@@ -27,7 +31,7 @@ export default {
       },
       selectAnimation(event){
           console.log(event.target.value);
-          this.$router.push(event.target.value);
+          this.$router.replace("animationss/"+event.target.value);
       }
   }
 }
@@ -70,7 +74,7 @@ select{
 		transition: box-shadow 0.1s linear, transform 0.1s linear;
 		&:hover{
 			box-shadow:4px 4px 8px gray;
-			transform: scale(1.05);
+			transform: scale(1.01);
 		}
 	}
 }
