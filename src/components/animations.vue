@@ -1,22 +1,15 @@
 <template lang="pug">
-    .container
-        ul
-            li
-                label Select Animations
-                ul
-                    li
-                        a(href="#/animationss/fade") Fade
-                    li
-                        a(href="#/animationss/zoom") Zoom
+	.container
+		.dropdown
+			label Select Animations
+			ul
+				li
+					a(href="#/animationss/fade") Fade
+				li
+					a(href="#/animationss/zoom") Zoom
 
-        h1 Animation Examples
-        select
-            option(selected) Select Animation
-            option
-                a(href="#/animationss/fade") Fade
-            option
-                a(href="#/animationss/zoom") Zoom
-        router-view
+
+		router-view
 </template>
 
 
@@ -24,18 +17,18 @@
 
 export default {
   data: () => {
-      return {
-          isFading:true
-      }
+	  return {
+		  isFading:true
+	  }
   },
   methods: {
-      toggleFading (){
-          this.isFading = !this.isFading;
-      },
-      selectAnimation(event){
-          console.log(event.target.value);
-          this.$router.replace("animationss/"+event.target.value);
-      }
+	  toggleFading (){
+		  this.isFading = !this.isFading;
+	  },
+	  selectAnimation(event){
+		  console.log(event.target.value);
+		  this.$router.replace("animationss/"+event.target.value);
+	  }
   }
 }
 </script>
@@ -44,39 +37,92 @@ export default {
 <style lang="scss">
 $vue_green: hsla(153, 50%, 48%, 1);
 
-ul{
-    list-style-type: none;
-    padding:0;
-    width:200px;
-    margin:auto;
+.dropdown{
+	margin:auto;
+	width:200px;
+	position:relative;
+	label{
+		border:4px solid $vue_green;
+		padding:4px 0;
+		display:block;
+		background-color:white;
+	}
 
-    label{
-    border:4px solid $vue_green;
-    background-color:white;
-    padding:4px 8px;
+	&:hover > ul{
+		display:block;
+		width:192px;
+		list-style-type: none;
+		margin:0;
+		margin-top:-4px;
+		padding:0;
+		position:absolute;
+		border:4px solid $vue_green;
+		background-color:white;
 
-    }
+		li{
+			margin:0;
+			padding:4px 0;
+			transition:all 0.2s linear;
+			a{
+				text-decoration:none;
+				color:black;
+				display:block;
 
-    ul{
-       display:none;
-           li{
+			}
+			&:hover{
+				cursor:hover;
+				background-color:lighten($vue_green, 40%);
+			}
+		}
 
-        background-color:white;
-        padding:4px 8px;
-    }
-    }
-    li:hover > ul{
-
-        position: absolute;
-
-        
-        padding:0;
-        display:block;
-    }
+	}
+	ul{
+		display:none;
+	}
 }
+/*
+ul{
+	position:absolute;
+	list-style-type: none;
+	padding:0;
+	width:200px;
+	margin:auto;
+
+	label{
+		border:4px solid $vue_green;
+		background-color:white;
+		padding:4px 0;
+		display: block;
+		width:200px;
+		margin:auto;
+	}
+
+	ul{
+	   display:none;
+	  // width:200px;
+	   
+	   //margin-top:-4px;
+	   //margin-left:auto;
+	   //margin-right:auto;
+	   border:4px solid $vue_green;
+		li{
+			background-color:white;
+		}
+	}
+	li:hover > ul{
+
+		//position: absolute;
+
+		width:200px;
+		padding:0;
+		margin:0;
+		margin-top:-4px;
+		display:block;
+	}
+}*/
 select{
-    font-size:20px;
-    border:4px solid $vue_green;
+	font-size:20px;
+	border:4px solid $vue_green;
 }
 .cell{
 
