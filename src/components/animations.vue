@@ -26,10 +26,14 @@ export default {
 		  this.isFading = !this.isFading;
 	  },
 	  selectAnimation(event){
+		  console.log(this.$router.map);
 		  console.log(event.target.value);
 		  this.$router.replace("animationss/"+event.target.value);
 	  }
-  }
+  },
+	mounted: ()=>{
+		//console.log(this.$router.map);
+	}
 }
 </script>
 
