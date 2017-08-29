@@ -6,7 +6,11 @@
 				li
 					a(href="#/animationss/fade") Fade
 				li
+					a(href="#/animationss/fade_detailed") Fade Detailed
+				li
 					a(href="#/animationss/zoom") Zoom
+				li
+					a(href="#/animationss/template") Template
 
 
 		router-view

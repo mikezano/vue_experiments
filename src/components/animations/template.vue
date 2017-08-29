@@ -2,23 +2,36 @@
 	.container
 		.cell
 			.transition-container
-				transition(name="fade")
+				transition(:name="animationName")
 					.emoji(v-if="isVisible") 😪
-				
-			button(@click="toggleFading") Fade 
+			button(@click="toggleVisible") {{animationName}}
+			pre &lt;div class=&#34{{appliedClass}}&#34&gt;
+  
 </template>
 
+
 <script>
+
+
+import fade from './fade'
+
 export default {
 	data: () => {
 		return {
-			isVisible:true
+			isVisible:true,
+			animationName: 'fade',
+			appliedClass:""
 		}
 	},
 	methods: {
-		toggleFading (){
+		toggleVisible (){
 			this.isVisible = !this.isVisible;
+			this.appliedClass = 
+				this.isVisible ? "fading-active" : ""
 		}
+	},
+	components:{
+		fade
 	}
 }
 </script>
