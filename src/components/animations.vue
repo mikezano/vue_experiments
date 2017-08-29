@@ -1,18 +1,21 @@
 <template lang="pug">
     .container
+        ul
+            li
+                label Select Animations
+                ul
+                    li
+                        a(href="#/animationss/fade") Fade
+                    li
+                        a(href="#/animationss/zoom") Zoom
+
         h1 Animation Examples
-        select(@change="selectAnimation($event)")
+        select
             option(selected) Select Animation
-            option fade
-            option zoom
             option
-                router-link(:to="{path: '/fade'}") Fade
+                a(href="#/animationss/fade") Fade
             option
-                router-link(:to="{path: 'zoom'}") Zoom
-        //router-link(:to="{path: 'animationss/fade'}") Fade
-        //router-link(:to="{path: 'animationss/zoom'}") Zoom
-        a(href="#/animationss/fade") Fade
-        a(href="#/animationss/zoom") Zoom
+                a(href="#/animationss/zoom") Zoom
         router-view
 </template>
 
@@ -41,6 +44,36 @@ export default {
 <style lang="scss">
 $vue_green: hsla(153, 50%, 48%, 1);
 
+ul{
+    list-style-type: none;
+    padding:0;
+    width:200px;
+    margin:auto;
+
+    label{
+    border:4px solid $vue_green;
+    background-color:white;
+    padding:4px 8px;
+
+    }
+
+    ul{
+       display:none;
+           li{
+
+        background-color:white;
+        padding:4px 8px;
+    }
+    }
+    li:hover > ul{
+
+        position: absolute;
+
+        
+        padding:0;
+        display:block;
+    }
+}
 select{
     font-size:20px;
     border:4px solid $vue_green;
