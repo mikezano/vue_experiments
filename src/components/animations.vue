@@ -11,6 +11,8 @@
 					a(href="#/animationss/zoom") Zoom
 				li
 					a(href="#/animationss/template") Template
+				li
+					a(href="#/animationss/fade_transition") Fade Transition
 
 
 		router-view
