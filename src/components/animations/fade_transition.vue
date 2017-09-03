@@ -15,8 +15,18 @@
 				
 			button(@click="toggleFading") Fade 
 			pre &lt;div class=&#34{{appliedClass}}&#34&gt;
-			button(@click="nextState") Next State
+			button(@click="next") Next State
 			div {{currentClassState}}
+
+			.time-line-container
+				#current
+				.line
+				.time-line
+					.step(@click="next($event)") Start
+					.step(@click="next($event)") 1 Frame later
+					.step(@click="next($event)") Halfway
+					.step(@click="next($event)") Done
+
 </template>
 
 <script>
@@ -34,13 +44,32 @@ export default {
 				"emoji fade-enter-active fade-enter-to"
 			],
 			currentClassState:"",
-			currentClassIndex:0
+			currentClassIndex:0,
+			leftOffset:0
 		}
 	},
+	mounted(){
+		this.leftOffset = 
+			document
+			.getElementById("current")
+			.getBoundingClientRect()
+			.left;
+	},
 	methods: {
-		nextState(){
-			this.currentClassState = this.classStates[this.currentClassIndex % 6]
-			this.currentClassIndex++;
+		stepClick(event){
+			console.log(event);
+		},
+		next(event){
+			let element = event.target;
+			let coords = element.getBoundingClientRect();
+			console.log(coords);
+			var a = document.getElementById("current");
+			let coords_a = a.getBoundingClientRect();
+			//a.style.top = coords.top+"px";
+			a.style.left = (coords.left - this.leftOffset )+"px";
+			console.log(a);
+			//this.currentClassState = this.classStates[this.currentClassIndex % 6]
+			//this.currentClassIndex++;
 		},
 		beforeEnter(){
 			alert('beforeEnter');
@@ -93,4 +122,52 @@ $vue_green: hsla(153, 50%, 48%, 1);
 .fade-enter-to, .fade-leave{
 	opacity:1;
 }
+
+.time-line-container{
+	width:80%;
+	position:relative;
+	margin-top:30px;
+
+	#current{
+		position: absolute;
+		z-index:2;
+		width:10px;
+		height: 10px;
+		border-radius: 10px;
+		background-color:red;
+		border:2px solid darken(red, 20%);
+		transition:all 0.5s ease-in-out;
+	}
+
+	.line{
+		background-color:$vue_green;
+		width:100%;
+		height:4px;
+		position: absolute;
+		top:4px;
+		z-index:0;
+	}
+
+	.time-line{
+		position:absolute;
+		width:100%;
+		display: flex;
+		align-items:center;
+		justify-content: space-around;
+		
+		.step{
+
+			&:before{
+				content: "";
+				display:block;
+				width:10px;
+				height: 10px;
+				border-radius:10px;
+				background-color:$vue_green;
+				border:2px solid darken($vue_green, 20%);
+			}
+		}
+	}
+}
+
 </style>
