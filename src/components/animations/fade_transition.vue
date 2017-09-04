@@ -13,19 +13,20 @@
 					v-on:leave-cancelled="leaveCancelled")
 					.emoji(v-if="isVisible") 😎
 				
-			button(@click="toggleFading") Fade 
-			pre &lt;div class=&#34{{appliedClass}}&#34&gt;
-			button(@click="next") Next State
-			div {{currentClassState}}
+			//button(@click="toggleFading") Fade 
+			pre &lt;div class=&#34{{currentClassState}}&#34&gt;
+			//button(@click="next") Next State
+			//div {{currentClassState}}
 
 			.time-line-container
 				#current
 				.line
 				.time-line
-					.step(@click="next($event)") Start
-					.step(@click="next($event)") 1 Frame later
-					.step(@click="next($event)") Halfway
-					.step(@click="next($event)") Done
+					#start.step(@click="next($event)") Start
+					#click.step(@click="next($event)") Click
+					#one-frame.step(@click="next($event)") 1 Frame later
+					#halfway.step(@click="next($event), classHash") Halfway
+					#done.step(@click="next($event)") Done
 
 </template>
 
@@ -36,13 +37,20 @@ export default {
 			isVisible:true,
 			appliedClass: "",
 			classStates: [
-				"eomji",
+				"emoji",
 				"emoji fade-leave fade-leave-active",
 				"emoji fade-leave-active fade-leave-to",
 				"",
 				"emoji fade-enter fade-enter-active",
 				"emoji fade-enter-active fade-enter-to"
 			],
+			classHash: {
+				"#start" : "emoji",
+				"#click" : "emoji fade-leave fade-leave-active",
+				"#one-frame" : "emoji fade-leave-active fade-leave-to",
+				"#halfway" : "emoji fade-leave-active fade-leave-to",
+				"#done" : ""
+			},
 			currentClassState:"",
 			currentClassIndex:0,
 			leftOffset:0
@@ -54,13 +62,17 @@ export default {
 			.getElementById("current")
 			.getBoundingClientRect()
 			.left;
+
+		this.currentClassState = this.classStates[0];
 	},
 	methods: {
 		stepClick(event){
 			console.log(event);
 		},
-		next(event){
+		next(event, classHash){
+			debugger;
 			let element = event.target;
+			console.log(element);
 			let coords = element.getBoundingClientRect();
 			console.log(coords);
 			var a = document.getElementById("current");
@@ -68,8 +80,10 @@ export default {
 			//a.style.top = coords.top+"px";
 			a.style.left = (coords.left - this.leftOffset )+"px";
 			console.log(a);
+			this.currentClassState = this.classHash["#"+element.id];
 			//this.currentClassState = this.classStates[this.currentClassIndex % 6]
 			//this.currentClassIndex++;
+
 		},
 		beforeEnter(){
 			alert('beforeEnter');
@@ -156,7 +170,10 @@ $vue_green: hsla(153, 50%, 48%, 1);
 		justify-content: space-around;
 		
 		.step{
-
+			&:hover{
+				cursor: pointer;
+				border-bottom:2px solid $vue_green;
+			}
 			&:before{
 				content: "";
 				display:block;
