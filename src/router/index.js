@@ -11,7 +11,7 @@ import guess_number from '@/components/guess_number'
 import animations from '@/components/animations'
 import fade from '@/components/animations/fade'
 import fade_detailed from '@/components/animations/fade_detailed'
-import fade_transition from '@/components/animations/fade_transition'
+import timeline from '@/components/animations/timeline'
 import zoom from '@/components/animations/zoom'
 import template from '@/components/animations/template'
 
@@ -35,7 +35,7 @@ export default new Router({
         {path: 'template',   name: 'Animation Template', component: template},
         {path: 'fade',   name: 'Animation Fade', component: fade},
         {path: 'fade_detailed',   name: 'Animation Fade Detailed', component: fade_detailed},
-        {path: 'fade_transition',   name: 'Animation Fade Transition', component: fade_transition},
+        {path: 'timeline',   name: 'Animation Timeline', component: timeline},
         {path: 'zoom',   name: 'Animation Zoom', component: zoom}
       ]
     }

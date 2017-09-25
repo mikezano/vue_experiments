@@ -1,46 +1,48 @@
 <template lang="pug">
-	.container
-		.cell
-			.transition-container
-				transition(name="fade"
-					v-on:before-enter="beforeEnter"
-					v-on:enter="enter"
-					v-on:after-enter="afterEnter"
-					v-on:enter-cancelled="enterCancelled"
-					v-on:before-leave="beforeLeave"
-					v-on:leave="leave"
-					v-on:after-leave="afterLeave"
-					v-on:leave-cancelled="leaveCancelled")
-					.emoji(v-if="isVisible") 😎
-				
-			//button(@click="toggleFading") Fade 
-			pre &lt;div class=&#34{{currentClassState}}&#34&gt;
-			//button(@click="next") Next State
-			//div {{currentClassState}}
 
-			.time-line-container
-				#current
-				.line
-				.time-line
-					#start.step(@click="next($event)") Start
-					#click.step(@click="next($event)") Click
-					#one-frame.step(@click="next($event)") 1 Frame later
-					#halfway.step(@click="next($event)") Halfway
-					#done.step(@click="next($event)") Done
+	.cell
+		.transition-container
+			transition(name="fade"
+				v-on:before-enter="beforeEnter"
+				v-on:enter="enter"
+				v-on:after-enter="afterEnter"
+				v-on:enter-cancelled="enterCancelled"
+				v-on:before-leave="beforeLeave"
+				v-on:leave="leave"
+				v-on:after-leave="afterLeave"
+				v-on:leave-cancelled="leaveCancelled")
+				.emoji(v-if="isVisible") 😎
+			
 
-			.animation-class-container
-				button &#xab; Prev
-				button(@click="advance()") Next &#xbb;
-				div
-					pre 
-						span.purple-code fade-leave 
-						span { opacity: 1;}
-					pre 
-						span.purple-code fade-leave-active
-						span { transition: opacity 5s ease-in;}
-					pre
-						span.purple-code fade-leave-to
-						span {opacity: 0;}
+
+		.time-line-container
+			#red-dot
+			.line
+			.time-line
+				#start.step(@click="next($event)") Start
+				#click.step(@click="next($event)") Click
+				#one-frame.step(@click="next($event)") 1 Frame later
+				#halfway.step(@click="next($event)") Halfway
+				#done.step(@click="next($event)") Done
+
+		.animation-class-container
+			button &#xab; Prev
+			button(@click="advanceToNext()") Next &#xbb;
+
+			.html
+				label HTML
+				pre.blue-code &lt;div class=&#34{{currentClassState}}&#34&gt;
+			.css
+				label CSS
+				pre 
+					span.purple-code fade-leave
+					span.blue-code { opacity: 1;}
+				pre 
+					span.purple-code fade-leave-active
+					span.blue-code { transition: opacity 5s ease-in;}
+				pre
+					span.purple-code fade-leave-to
+					span.blue-code {opacity: 0;}
 	</template>
 
 <script>
@@ -49,14 +51,6 @@ export default {
 		return {
 			isVisible:true,
 			appliedClass: "",
-			classStates: [
-				"emoji",
-				"emoji fade-leave fade-leave-active",
-				"emoji fade-leave-active fade-leave-to",
-				"",
-				"emoji fade-enter fade-enter-active",
-				"emoji fade-enter-active fade-enter-to"
-			],
 			classHash: [
 				{ id: "#start", class: "emoji"},
 				{ id: "#click", class: "emoji fade-leave fade-leave-active"},
@@ -65,7 +59,6 @@ export default {
 				{ id: "#done", class: ""}
 			],
 			currentClassState:"",
-			currentClassIndex:0,
 			currentHashItem: null,
 			leftOffset:0
 		}
@@ -73,27 +66,20 @@ export default {
 	mounted(){
 		this.leftOffset = 
 			document
-			.getElementById("current")
+			.getElementById("red-dot")
 			.getBoundingClientRect()
 			.left;
 
-		this.currentClassState = this.classStates[0];
-		this.currentHashItem = this.classHash.filter((obj) => {
-			return obj.id == "#start";
-		})[0];
+		this.advanceDot('start');
 	},
 	methods: {
-		stepClick(event){
-			console.log(event);
-		},
-		advance(){
 
-			let j = this.classHash.findIndex((element) => {
+		advanceToNext(){
+
+			let i = this.classHash.findIndex((element) => {
 				return element.id == this.currentHashItem.id;
 			});
-			this.currentHashItem = this.classHash[ ( j + 1 ) % this.classHash.length ];
-			
-			console.log(this.currentHashItem);
+			this.currentHashItem = this.classHash[ ( i + 1 ) % this.classHash.length ];
 			this.advanceDot(this.currentHashItem.id.replace("#",""));
 		},
 		next(event){
@@ -102,13 +88,12 @@ export default {
 		},
 		advanceDot(id){
 			let element = document.getElementById(id);
-			let hashKey = "#" + element.id;
 			let coords = element.getBoundingClientRect();
-			var a = document.getElementById("current");
-			let coords_a = a.getBoundingClientRect();
-			a.style.left = (coords.left - this.leftOffset )+"px";
+			var r = document.getElementById("red-dot");
+			let coords_r = r.getBoundingClientRect();
+			r.style.left = (coords.left - this.leftOffset )+"px";
 			let i = this.classHash.filter((obj)=>{
-				return obj.id == hashKey;
+				return obj.id == "#"+element.id;
 			})[0];
 			console.log(i);
 			this.currentClassState = i.class;
@@ -171,7 +156,7 @@ export default {
 		position:relative;
 		margin-top:30px;
 
-		#current{
+		#red-dot{
 			position: absolute;
 			z-index:2;
 			width:10px;
@@ -218,13 +203,24 @@ export default {
 	}
 
 	.animation-class-container{
-
-		padding-top:30px;
+		
+		.html, .css{
+			background-color:#333;
+			padding:10px;
+			margin:10px;
+			label{
+				color:white;
+			}
+		}
+		padding-top:60px;
 		pre{
-			font-size:30px;
+			font-size:20px;
 		}
 		.purple-code{
 			color: purple;
+		}
+		.blue-code{
+			color: lighten(blue, 15%);
 		}
 	}
 </style>

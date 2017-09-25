@@ -1,7 +1,8 @@
 <template lang="pug">
 	.container
 		.dropdown
-			label Select Animations
+			label Select Example
+				.caret &dArr;
 			ul
 				li
 					a(href="#/animationss/fade") Fade
@@ -12,7 +13,7 @@
 				li
 					a(href="#/animationss/template") Template
 				li
-					a(href="#/animationss/fade_transition") Fade Transition
+					a(href="#/animationss/timeline") Timeline
 
 
 		router-view
@@ -52,21 +53,26 @@ $vue_green: hsla(153, 50%, 48%, 1);
 	width:200px;
 	position:relative;
 	label{
-		border:4px solid $vue_green;
-		padding:4px 0;
+		border:2px solid $vue_green;
+		padding:2px 0;
 		display:block;
 		background-color:white;
-	}
 
+		.caret{
+			float: right;
+			font-weight:bold;
+			transform: translateX(-10px);
+		}
+	}
 	&:hover > ul{
 		display:block;
-		width:192px;
+		width:196px;
 		list-style-type: none;
 		margin:0;
-		margin-top:-4px;
+		margin-top:-2px;
 		padding:0;
 		position:absolute;
-		border:4px solid $vue_green;
+		border:2px solid $vue_green;
 		background-color:white;
 
 		li{
@@ -90,50 +96,8 @@ $vue_green: hsla(153, 50%, 48%, 1);
 		display:none;
 	}
 }
-/*
-ul{
-	position:absolute;
-	list-style-type: none;
-	padding:0;
-	width:200px;
-	margin:auto;
 
-	label{
-		border:4px solid $vue_green;
-		background-color:white;
-		padding:4px 0;
-		display: block;
-		width:200px;
-		margin:auto;
-	}
 
-	ul{
-	   display:none;
-	  // width:200px;
-	   
-	   //margin-top:-4px;
-	   //margin-left:auto;
-	   //margin-right:auto;
-	   border:4px solid $vue_green;
-		li{
-			background-color:white;
-		}
-	}
-	li:hover > ul{
-
-		//position: absolute;
-
-		width:200px;
-		padding:0;
-		margin:0;
-		margin-top:-4px;
-		display:block;
-	}
-}*/
-select{
-	font-size:20px;
-	border:4px solid $vue_green;
-}
 .cell{
 
 	margin:auto;
@@ -144,7 +108,7 @@ select{
 	height:500px;
 
 	pre{
-		font-size:30px;
+		font-size:20px;
 	}
 	.transition-container{
 		height:140px;
@@ -161,9 +125,13 @@ select{
 		border:4px solid darken($vue_green, 20%);
 		background:radial-gradient(lighten($vue_green, 10%), $vue_green);
 		transition: box-shadow 0.1s linear, transform 0.1s linear;
+		outline:none;
 		&:hover{
 			box-shadow:4px 4px 8px gray;
 			transform: scale(1.01);
+		}
+		&:active{
+			transform: scale(1.0);
 		}
 	}
 }
