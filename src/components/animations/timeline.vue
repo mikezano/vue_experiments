@@ -11,7 +11,9 @@
 				v-on:leave="leave"
 				v-on:after-leave="afterLeave"
 				v-on:leave-cancelled="leaveCancelled")
-				.emoji(v-if="isVisible") 😎
+				.emoji(
+					v-if="isVisible"
+					v-bind:class="{'halfway' : isHalfway()}") 😎
 			
 
 
@@ -26,21 +28,21 @@
 				#done.step(@click="next($event)") Done
 
 		.animation-class-container
-			button &#xab; Prev
-			button(@click="advanceToNext()") Next &#xbb;
+			button(@click="advanceToNext(-1)") &#xab; Prev
+			button(@click="advanceToNext(1)") Next &#xbb;
 
 			.html
 				label HTML
 				pre.blue-code &lt;div class=&#34{{currentClassState}}&#34&gt;
 			.css
 				label CSS
-				pre 
+				pre(v-if="isLeaveVisible")
 					span.purple-code fade-leave
 					span.blue-code { opacity: 1;}
-				pre 
+				pre(v-if="isLeaveActiveVisible")
 					span.purple-code fade-leave-active
 					span.blue-code { transition: opacity 5s ease-in;}
-				pre
+				pre(v-if="isLeaveToVisible")
 					span.purple-code fade-leave-to
 					span.blue-code {opacity: 0;}
 	</template>
@@ -50,6 +52,9 @@ export default {
 	data: () => {
 		return {
 			isVisible:true,
+			isLeaveVisible: true,
+			isLeaveActiveVisible: true,
+			isLeaveToVisible: true,
 			appliedClass: "",
 			classHash: [
 				{ id: "#start", class: "emoji"},
@@ -73,13 +78,38 @@ export default {
 		this.advanceDot('start');
 	},
 	methods: {
-
-		advanceToNext(){
-
+		isHalfway(){
+			return this.currentHashItem ? this.currentHashItem.id == "#halfway" : false;
+		},
+		classVisiblility(step){
+			switch(step){
+				case '#start':
+				case '#done':
+					this.isLeaveVisible = false;
+					this.isLeaveActiveVisible = false;
+					this.isLeaveToVisible = false;
+				break;
+				case '#click':
+					this.isLeaveVisible = true;
+					this.isLeaveActiveVisible = true;
+					this.isLeaveToVisible = false;
+				break;
+				case '#one-frame':
+				case '#halfway':
+					this.isLeaveVisible = false;
+					this.isLeaveActiveVisible = true;
+					this.isLeaveToVisible = true;
+				break;				
+			}
+		},
+		advanceToNext(direction){
+			
 			let i = this.classHash.findIndex((element) => {
 				return element.id == this.currentHashItem.id;
 			});
-			this.currentHashItem = this.classHash[ ( i + 1 ) % this.classHash.length ];
+			i = i < 1 ? 1 : i;
+			debugger;
+			this.currentHashItem = this.classHash[ ( i + direction ) % this.classHash.length ];
 			this.advanceDot(this.currentHashItem.id.replace("#",""));
 		},
 		next(event){
@@ -98,6 +128,8 @@ export default {
 			console.log(i);
 			this.currentClassState = i.class;
 			this.currentHashItem = i;
+
+			this.classVisiblility(this.currentHashItem.id);
 		},
 		beforeEnter(){
 			alert('beforeEnter');
@@ -151,6 +183,9 @@ export default {
 		opacity:1;
 	}
 
+	.halfway{
+		opacity: 0.5;
+	}
 	.time-line-container{
 		width:80%;
 		position:relative;
@@ -180,11 +215,17 @@ export default {
 			position:absolute;
 			width:100%;
 			display: flex;
-			align-items:center;
-			justify-content: space-around;
+			//align-items:center;
+			//justify-content: space-around;
 			
+			#halfway{
+				flex-grow: 3;
+			}
+
 			.step{
+				flex-grow:1;
 				border-bottom:2px solid transparent;
+				text-align:left;
 				&:hover{
 					cursor: pointer;
 					border-bottom:2px solid $vue_green;
@@ -208,6 +249,7 @@ export default {
 			background-color:#333;
 			padding:10px;
 			margin:10px;
+			height:150px;
 			label{
 				color:white;
 			}
@@ -217,10 +259,10 @@ export default {
 			font-size:20px;
 		}
 		.purple-code{
-			color: purple;
+			color: lighten(purple, 10%);
 		}
 		.blue-code{
-			color: lighten(blue, 15%);
+			color: lighten(blue, 20%);
 		}
 	}
 </style>
