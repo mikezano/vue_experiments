@@ -2,18 +2,8 @@
 
 	.cell
 		.transition-container
-			transition(name="fade"
-				v-on:before-enter="beforeEnter"
-				v-on:enter="enter"
-				v-on:after-enter="afterEnter"
-				v-on:enter-cancelled="enterCancelled"
-				v-on:before-leave="beforeLeave"
-				v-on:leave="leave"
-				v-on:after-leave="afterLeave"
-				v-on:leave-cancelled="leaveCancelled")
-				.emoji(
-					v-if="isVisible"
-					v-bind:class="{'halfway' : isHalfway()}") 😎
+			button Click!
+			.emoji(v-bind:class="{'halfway' : isHalfway()}") 😎
 			
 
 
@@ -26,6 +16,10 @@
 				#one-frame.step(@click="next($event)") 1 Frame later
 				#halfway.step(@click="next($event)") Halfway
 				#done.step(@click="next($event)") Done
+				#enter.step(@click="next($event)") Enter
+				#one-frame-enter.step(@click="next($event)") 1 Frame later
+				#one-frame-enter.step(@click="next($event)")
+
 
 		.animation-class-container
 			button(@click="advanceToNext(-1)") &#xab; Prev
@@ -33,7 +27,11 @@
 
 			.html
 				label HTML
-				pre.blue-code &lt;div class=&#34{{currentClassState}}&#34&gt;
+				
+				pre.blue-code
+					|&lt;transition name=&#34fade&#34&gt;
+					|   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;
+					| &lt;/transition&gt;
 			.css
 				label CSS
 				pre(v-if="isLeaveVisible")
@@ -45,6 +43,11 @@
 				pre(v-if="isLeaveToVisible")
 					span.purple-code fade-leave-to
 					span.blue-code {opacity: 0;}
+			.css
+				label JS
+				pre
+					span.purple-code isVisible 
+					span.blue-code = {{isVisible}};			
 	</template>
 
 <script>
@@ -61,7 +64,10 @@ export default {
 				{ id: "#click", class: "emoji fade-leave fade-leave-active"},
 				{ id: "#one-frame", class: "emoji fade-leave-active fade-leave-to"},
 				{ id: "#halfway", class: "emoji fade-leave-active fade-leave-to"},
-				{ id: "#done", class: ""}
+				{ id: "#done", class: ""},
+				{ id: "#a", class: "emoji fade-enter fade-enter-active"},
+				{ id: "#b", class: "emoji fade-enter-active fade-enter-to"}
+				
 			],
 			currentClassState:"",
 			currentHashItem: null,
@@ -107,7 +113,7 @@ export default {
 			let i = this.classHash.findIndex((element) => {
 				return element.id == this.currentHashItem.id;
 			});
-			i = i < 1 ? 1 : i;
+			i = i < 1 ? 0 : i;
 			debugger;
 			this.currentHashItem = this.classHash[ ( i + direction ) % this.classHash.length ];
 			this.advanceDot(this.currentHashItem.id.replace("#",""));
@@ -257,6 +263,7 @@ export default {
 		padding-top:60px;
 		pre{
 			font-size:20px;
+			text-align:left;
 		}
 		.purple-code{
 			color: lighten(purple, 10%);
