@@ -5,15 +5,17 @@
 				.caret &dArr;
 			ul
 				li
-					a(href="#/animationss/fade") Fade
+					a(href="#/animations/fade") Fade
 				li
-					a(href="#/animationss/fade_detailed") Fade Detailed
+					a(href="#/animations/fade_detailed") Fade Detailed
 				li
-					a(href="#/animationss/zoom") Zoom
+					a(href="#/animations/zoom") Zoom
 				li
-					a(href="#/animationss/template") Template
+					a(href="#/animations/template") Template
 				li
-					a(href="#/animationss/timeline") Timeline
+					a(href="#/animations/timeline") Timeline
+				li
+					a(href="#/animations/examples_grid") Examples Grid
 
 
 		router-view
@@ -45,13 +47,15 @@ export default {
 </script>
 
 
-<style lang="scss">
-$vue_green: hsla(153, 50%, 48%, 1);
+<style lang="scss" scoped>
+
+@import '../sass/global.scss';
 
 .dropdown{
 	margin:auto;
 	width:200px;
 	position:relative;
+	z-index:100;
 	label{
 		border:2px solid $vue_green;
 		padding:2px 0;
@@ -94,45 +98,6 @@ $vue_green: hsla(153, 50%, 48%, 1);
 	}
 	ul{
 		display:none;
-	}
-}
-
-
-.cell{
-
-	margin:auto;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	transition: color .2s linear;
-	height:500px;
-
-	pre{
-		font-size:20px;
-	}
-	.transition-container{
-		height:140px;
-		.emoji{
-			font-size:100px;
-		}
-	}
-
-	button {
-		font-weight:bold;
-		font-size:40px;
-		border-radius:5px;
-		color:darken($vue_green, 30%);
-		border:4px solid darken($vue_green, 20%);
-		background:radial-gradient(lighten($vue_green, 10%), $vue_green);
-		transition: box-shadow 0.1s linear, transform 0.1s linear;
-		outline:none;
-		&:hover{
-			box-shadow:4px 4px 8px gray;
-			transform: scale(1.01);
-		}
-		&:active{
-			transform: scale(1.0);
-		}
 	}
 }
 </style>

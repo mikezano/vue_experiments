@@ -1,6 +1,6 @@
 <template lang="pug">
 
-	.cell
+	.main-div
 		.transition-container
 			.emoji(
 				v-if="isEmojiVisible"
@@ -182,84 +182,85 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-	$vue_green: hsla(153, 50%, 48%, 1);
+@import '../../sass/global.scss';
 
-	.fade-enter-active, .fade-leave-active{
-		transition: opacity 5s ease-in;
+
+.main-div{
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+}
+
+
+.transition-container{
+	min-height:140px;
+
+	.emoji{
+		font-size:100px;
 	}
-	.fade-enter, .fade-leave-to{
-		opacity:0;
+}
+
+.halfway{
+	opacity: 0.5;
+}
+.time-line-container{
+	width:80%;
+	position:relative;
+	margin-top:30px;
+
+	#red-dot{
+		position: absolute;
+		z-index:2;
+		width:10px;
+		height: 10px;
+		border-radius: 10px;
+		background-color:red;
+		border:2px solid darken(red, 20%);
+		transition:all 0.5s ease-in-out;
 	}
 
-	.fade-enter-to, .fade-leave{
-		opacity:1;
+	.line{
+		background-color:$vue_green;
+		width:100%;
+		height:4px;
+		position: absolute;
+		top:4px;
+		z-index:0;
 	}
 
-	.transition-container{
-		min-height:140px;
-	}
-
-	.halfway{
-		opacity: 0.5;
-	}
-	.time-line-container{
-		width:80%;
-		position:relative;
-		margin-top:30px;
-
-		#red-dot{
-			position: absolute;
-			z-index:2;
-			width:10px;
-			height: 10px;
-			border-radius: 10px;
-			background-color:red;
-			border:2px solid darken(red, 20%);
-			transition:all 0.5s ease-in-out;
+	.time-line{
+		position:absolute;
+		width:100%;
+		display: flex;
+		//align-items:center;
+		//justify-content: space-around;
+		
+		#halfway{
+			flex-grow: 3;
 		}
 
-		.line{
-			background-color:$vue_green;
-			width:100%;
-			height:4px;
-			position: absolute;
-			top:4px;
-			z-index:0;
-		}
-
-		.time-line{
-			position:absolute;
-			width:100%;
-			display: flex;
-			//align-items:center;
-			//justify-content: space-around;
-			
-			#halfway{
-				flex-grow: 3;
+		.step{
+			flex-grow:1;
+			border-bottom:2px solid transparent;
+			text-align:left;
+			&:hover{
+				cursor: pointer;
+				border-bottom:2px solid $vue_green;
 			}
-
-			.step{
-				flex-grow:1;
-				border-bottom:2px solid transparent;
-				text-align:left;
-				&:hover{
-					cursor: pointer;
-					border-bottom:2px solid $vue_green;
-				}
-				&:before{
-					content: "";
-					display:block;
-					width:10px;
-					height: 10px;
-					border-radius:10px;
-					background-color:$vue_green;
-					border:2px solid darken($vue_green, 20%);
-				}
+			&:before{
+				content: "";
+				display:block;
+				width:10px;
+				height: 10px;
+				border-radius:10px;
+				background-color:$vue_green;
+				border:2px solid darken($vue_green, 20%);
 			}
 		}
 	}
+}
 
 	.animation-class-container{
 		

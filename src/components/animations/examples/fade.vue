@@ -3,8 +3,6 @@
         button(@click="toggleFading") Fade
         transition(name="fade")
             div(v-if="isFading" class="emoji") 😪
-        pre
-            testing
 </template>
 
 

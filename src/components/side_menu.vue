@@ -17,7 +17,7 @@
 			<li><a href="#/gsap_auto">GSA</a></li>
 			<li><a href="#/sara">sara</a></li>
 			<li><a href="#/guess_number">Guess Number</a></li>
-			<li><a href="#/animationss">Animations</a></li>
+			<li><a href="#/animations">Animations</a></li>
 
 		</ul>
 	</div>
