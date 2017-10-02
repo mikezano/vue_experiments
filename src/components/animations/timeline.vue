@@ -2,23 +2,23 @@
 
 	.cell
 		.transition-container
-			button Click!
-			.emoji(v-bind:class="{'halfway' : isHalfway()}") 😎
+			.emoji(
+				v-if="isEmojiVisible"
+				v-bind:class="{'halfway' : isHalfway()}") 😎
 			
-
-
 		.time-line-container
 			#red-dot
 			.line
 			.time-line
 				#start.step(@click="next($event)") Start
-				#click.step(@click="next($event)") Click
-				#one-frame.step(@click="next($event)") 1 Frame later
-				#halfway.step(@click="next($event)") Halfway
-				#done.step(@click="next($event)") Done
-				#enter.step(@click="next($event)") Enter
+				#click-leave.step(@click="next($event)") Click Event
+				#one-frame-leave.step(@click="next($event)") 1 Frame later
+				#halfway-leave.step(@click="next($event)") Halfway
+				#done-leave.step(@click="next($event)") Done
+				#click-enter.step(@click="next($event)") Cick Event
 				#one-frame-enter.step(@click="next($event)") 1 Frame later
-				#one-frame-enter.step(@click="next($event)")
+				#halfway-enter.step(@click="next($event)") Halfway
+				#done-enter.step(@click="next($event)") Done
 
 
 		.animation-class-container
@@ -29,9 +29,9 @@
 				label HTML
 				
 				pre.blue-code
-					|&lt;transition name=&#34fade&#34&gt;
-					|   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;
-					| &lt;/transition&gt;
+					p &lt;transition name=&#34fade&#34&gt;
+					p(v-if="isEmojiDivVisible")   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;
+					p &lt;/transition&gt;
 			.css
 				label CSS
 				pre(v-if="isLeaveVisible")
@@ -43,30 +43,46 @@
 				pre(v-if="isLeaveToVisible")
 					span.purple-code fade-leave-to
 					span.blue-code {opacity: 0;}
+				pre(v-if="isEnterVisible")
+					span.purple-code fade-enter
+					span.blue-code { opacity: 0;}
+				pre(v-if="isEnterActiveVisible")
+					span.purple-code fade-enter-active
+					span.blue-code { transition: opacity 5s ease-in;}
+				pre(v-if="isEnterToVisible")
+					span.purple-code fade-enter-to
+					span.blue-code {opacity: 1;}
 			.css
 				label JS
 				pre
 					span.purple-code isVisible 
-					span.blue-code = {{isVisible}};			
+					span.blue-code = {{isVisibleVar}};
 	</template>
 
 <script>
 export default {
 	data: () => {
 		return {
-			isVisible:true,
+			isVisibleVar:true,
 			isLeaveVisible: true,
 			isLeaveActiveVisible: true,
 			isLeaveToVisible: true,
+			isEnterVisible: false,
+			isEnterActiveVisible: false,
+			isEnterToVisible: false,
+			isEmojiVisible: true,
+			isEmojiDivVisible: true,
 			appliedClass: "",
 			classHash: [
 				{ id: "#start", class: "emoji"},
-				{ id: "#click", class: "emoji fade-leave fade-leave-active"},
-				{ id: "#one-frame", class: "emoji fade-leave-active fade-leave-to"},
-				{ id: "#halfway", class: "emoji fade-leave-active fade-leave-to"},
-				{ id: "#done", class: ""},
-				{ id: "#a", class: "emoji fade-enter fade-enter-active"},
-				{ id: "#b", class: "emoji fade-enter-active fade-enter-to"}
+				{ id: "#click-leave", class: "emoji fade-leave fade-leave-active"},
+				{ id: "#one-frame-leave", class: "emoji fade-leave-active fade-leave-to"},
+				{ id: "#halfway-leave", class: "emoji fade-leave-active fade-leave-to"},
+				{ id: "#done-leave", class: ""},
+				{ id: "#click-enter", class: "emoji fade-enter fade-enter-active"},
+				{ id: "#one-frame-enter", class: "emoji fade-enter-active fade-enter-to"},
+				{ id: "#halfway-enter", class: "emoji fade-enter-active fade-enter-to"},
+				{ id: "#done-enter", class: "emoji"}
 				
 			],
 			currentClassState:"",
@@ -85,27 +101,52 @@ export default {
 	},
 	methods: {
 		isHalfway(){
-			return this.currentHashItem ? this.currentHashItem.id == "#halfway" : false;
+			if(this.currentHashItem){
+				return this.currentHashItem.id == "#halfway-leave" || this.currentHashItem.id == "#halfway-enter";
+			}
+			return false;
+		},
+		setVisibilities(ilv, ilav, iltv, iev, ieav, ietv, iemv, iemdv, ivv){
+			this.isLeaveVisible = ilv;
+			this.isLeaveActiveVisible = ilav;
+			this.isLeaveToVisible = iltv;
+			this.isEnterVisible = iev;
+			this.isEnterActiveVisible = ieav;
+			this.isEnterToVisible = ietv;
+			this.isEmojiVisible = iemv;
+			this.isEmojiDivVisible = iemdv;
+			this.isVisibleVar = ivv;
 		},
 		classVisiblility(step){
 			switch(step){
 				case '#start':
-				case '#done':
-					this.isLeaveVisible = false;
-					this.isLeaveActiveVisible = false;
-					this.isLeaveToVisible = false;
+					this.setVisibilities(false, false, false, false, false, false, true, true, true);
 				break;
-				case '#click':
-					this.isLeaveVisible = true;
-					this.isLeaveActiveVisible = true;
-					this.isLeaveToVisible = false;
+				case '#click-leave':
+					this.setVisibilities(true, true, false, false, false, false, true, true, false);
 				break;
-				case '#one-frame':
-				case '#halfway':
-					this.isLeaveVisible = false;
-					this.isLeaveActiveVisible = true;
-					this.isLeaveToVisible = true;
-				break;				
+				case '#one-frame-leave':
+					this.setVisibilities(false, true, true, false, false, false, true, true, false);
+				break;
+				case '#halfway-leave':
+					this.setVisibilities(false, true, true, false, false, false, true, true, false);
+				break;
+				case '#done-leave':
+					this.setVisibilities(false, false, false, false, false, false, false, false, false);
+				break;
+				case '#click-enter':
+					this.setVisibilities(false, false, false, true, true, false, false, true, true);
+				break;
+				case '#one-frame-enter':
+					this.setVisibilities(false, false, false, false, true, true, false, true, true);
+				break;
+				case '#halfway-enter':
+					this.setVisibilities(false, false, false, false, true, true, true, true, true);
+				break;
+				case '#done-enter':
+					this.setVisibilities(false, false, false, false, false, false, true, true, true);
+				break;
+
 			}
 		},
 		advanceToNext(direction){
@@ -114,7 +155,7 @@ export default {
 				return element.id == this.currentHashItem.id;
 			});
 			i = i < 1 ? 0 : i;
-			debugger;
+
 			this.currentHashItem = this.classHash[ ( i + direction ) % this.classHash.length ];
 			this.advanceDot(this.currentHashItem.id.replace("#",""));
 		},
@@ -136,39 +177,6 @@ export default {
 			this.currentHashItem = i;
 
 			this.classVisiblility(this.currentHashItem.id);
-		},
-		beforeEnter(){
-			alert('beforeEnter');
-			this.appliedClass = "fade-enter";
-		},
-		enter(){
-			this.appliedClass  = "fade-enter fade-enter-active";
-			alert('enter');
-		},
-		afterEnter(){
-			this.appliedClass = "";
-			alert('afterEnter');
-		},
-		enterCancelled(){
-			alert('enterCancelled');
-		},
-		beforeLeave(){
-			this.appliedClass = "fade-leave";
-			alert('beforeLeave');
-		},
-		leave(){
-			this.appliedClass = "fade-leave fade-leave-active";
-			alert('leave');
-		},
-		afterLeave(){
-			this.appliedClass = "";
-			alert('afterLeave');
-		},
-		leaveCancelled(){
-			alert('leaveCancelled');
-		},
-		toggleFading (){
-			this.isVisible = !this.isVisible;
 		}
 	}
 }
@@ -187,6 +195,10 @@ export default {
 
 	.fade-enter-to, .fade-leave{
 		opacity:1;
+	}
+
+	.transition-container{
+		min-height:140px;
 	}
 
 	.halfway{
