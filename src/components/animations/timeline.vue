@@ -30,7 +30,7 @@
 				
 				pre.blue-code
 					p &lt;transition name=&#34fade&#34&gt;
-					p(v-if="isEmojiDivVisible")   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;
+					p(v-if="isEmojiDivVisible")   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;😎&lt;/div&gt;
 					p &lt;/transition&gt;
 			.css
 				label CSS

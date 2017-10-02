@@ -3,7 +3,7 @@
 		<div  @click="close">
 			<icon name="close" class="close-icon" ></icon>
 		</div>
-		<div class='header'>			
+		<div class='header'>
 			<img src="./../assets/logo.png">
 			<p>Experiments</p>
 		</div>
@@ -12,10 +12,8 @@
 			<li><a href="#/environment">Environment</a></li>
 			<li><a href="#/async">Async</a></li>
 			<li><a href="#/background">Animated Background</a></li>
-			<li><a href="#/animations">Vue Animation</a></li>
-			<li><a href="#/gsap">Green Sock</a></li>
-			<li><a href="#/gsap_auto">GSA</a></li>
-			<li><a href="#/sara">sara</a></li>
+			<li><a href="#/gsap">Green Sock Test</a></li>
+			<li><a href="#/gsap_auto">Green Sock Rectangles</a></li>
 			<li><a href="#/guess_number">Guess Number</a></li>
 			<li><a href="#/animations">Animations</a></li>
 

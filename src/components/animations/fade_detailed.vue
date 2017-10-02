@@ -73,7 +73,6 @@ $vue_green: hsla(153, 50%, 48%, 1);
 .fade-enter, .fade-leave-to{
 	opacity:0;
 }
-
 .fade-enter-to, .fade-leave{
 	opacity:1;
 }
