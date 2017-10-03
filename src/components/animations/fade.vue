@@ -1,12 +1,10 @@
 <template lang="pug">
-	.container
-		.cell
-			.transition-container
-				transition(name="fade")
-					.emoji(v-if="isVisible") 😪
-				
-			button(@click="toggleFading") Fade 
+	div
+		transition(name="fade")
+			div(v-if="isVisible" class="emoji") 😪
+		button(@click="toggleFading") Fade
 </template>
+
 
 <script>
 export default {
@@ -23,9 +21,17 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-$vue_green: hsla(153, 50%, 48%, 1);
-
-
+.emoji{font-size:150px;}
+button{font-size:60px;}
+.fade-enter-active, .fade-leave-active{
+	transition: opacity 2s ease-in;
+}
+.fade-enter, .fade-leave-to{
+	opacity:0;
+}
+.fade-leave, .fade-enter-to{
+	opacity:1;
+}
 </style>
