@@ -25,38 +25,45 @@
 			button(@click="advanceToNext(-1)") &#xab; Prev
 			button(@click="advanceToNext(1)") Next &#xbb;
 
-			.html
-				label HTML
-				
-				pre.blue-code
-					p &lt;transition name=&#34fade&#34&gt;
-					p(v-if="isEmojiDivVisible")   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;😎&lt;/div&gt;
-					p &lt;/transition&gt;
-			.css
-				label CSS
-				pre(v-if="isLeaveVisible")
-					span.purple-code fade-leave
-					span.blue-code { opacity: 1;}
-				pre(v-if="isLeaveActiveVisible")
-					span.purple-code fade-leave-active
-					span.blue-code { transition: opacity 5s ease-in;}
-				pre(v-if="isLeaveToVisible")
-					span.purple-code fade-leave-to
-					span.blue-code {opacity: 0;}
-				pre(v-if="isEnterVisible")
-					span.purple-code fade-enter
-					span.blue-code { opacity: 0;}
-				pre(v-if="isEnterActiveVisible")
-					span.purple-code fade-enter-active
-					span.blue-code { transition: opacity 5s ease-in;}
-				pre(v-if="isEnterToVisible")
-					span.purple-code fade-enter-to
-					span.blue-code {opacity: 1;}
-			.css
+			.js
 				label JS
 				pre
 					span.purple-code isVisible 
 					span.blue-code = {{isVisibleVar}};
+			.html
+				label HTML
+				
+				pre.purple-code
+					p &lt;transition name=&#34fade&#34&gt;
+					p(v-if="isEmojiDivVisible")  &lt;div 
+					p(v-if="isEmojiDivVisible")    v-if=&#34isVisible&#34
+					p(v-if="isEmojiDivVisible")
+						|    class=&#34
+						span.blue-code {{currentClassState}}
+						| &#34&gt;
+					p(v-if="isEmojiDivVisible")    😎
+					p(v-if="isEmojiDivVisible")  &lt;/div&gt;
+					p &lt;/transition&gt;
+			.css
+				label CSS
+				pre(v-bind:class="{'mute' : !isLeaveVisible}")
+					span.purple-code fade-leave
+					span.blue-code { opacity: 1;}
+				pre(v-bind:class="{'mute' : !isLeaveActiveVisible}")
+					span.purple-code fade-leave-active
+					span.blue-code { transition: opacity 5s ease-in;}
+				pre(v-bind:class="{'mute' : !isLeaveToVisible}")
+					span.purple-code fade-leave-to
+					span.blue-code {opacity: 0;}
+				pre(v-bind:class="{'mute' : !isEnterVisible}")
+					span.purple-code fade-enter
+					span.blue-code { opacity: 0;}
+				pre(v-bind:class="{'mute' : !isEnterActiveVisible}")
+					span.purple-code fade-enter-active
+					span.blue-code { transition: opacity 5s ease-in;}
+				pre(v-bind:class="{'mute' : !isEnterToVisible}")
+					span.purple-code fade-enter-to
+					span.blue-code {opacity: 1;}
 	</template>
 
 <script>
@@ -264,19 +271,30 @@ export default {
 
 	.animation-class-container{
 		
-		.html, .css{
+		.html, .css, .js{
 			background-color:#333;
-			padding:10px;
-			margin:10px;
-			height:150px;
+			padding:4px 8px;
+			margin:4px;
+
 			label{
 				color:white;
 			}
+
+			p{padding:0; margin:0;}
+		}
+
+		.js{
+			margin-top:20px;
 		}
 		padding-top:60px;
 		pre{
-			font-size:20px;
+			font-size:16px;
 			text-align:left;
+			margin:0;
+
+			&.mute span{
+				color:#555;
+			}
 		}
 		.purple-code{
 			color: lighten(purple, 10%);
