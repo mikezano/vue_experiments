@@ -8,6 +8,7 @@ import gsap_auto		from '@/components/gsap_auto'
 import guess_number		from '@/components/guess_number'
 import animations		from '@/components/animations'
 import examples_grid	from '@/components/animations/examples_grid'
+import simple_examples	from '@/components/animations/simple_examples'
 import fade				from '@/components/animations/fade'
 import fade_detailed	from '@/components/animations/fade_detailed'
 import timeline			from '@/components/animations/timeline'
@@ -27,12 +28,13 @@ export default new Router({
 		{path: '/animations/',
 			component: animations,
 			children: [
-				{path: 'template',		name: 'Animation Template',			component: template},
-				{path: 'fade',			name: 'Animation Fade',				component: fade},
-				{path: 'fade_detailed',	name: 'Animation Fade Detailed',	component: fade_detailed},
-				{path: 'timeline',		name: 'Animation Timeline',			component: timeline},
-				{path: 'zoom',			name: 'Animation Zoom',				component: zoom},
-				{path: 'examples_grid',	name: 'Examples Grid',				component: examples_grid}
+				{path: 'template',			name: 'Animation Template',			component: template},
+				{path: 'fade',				name: 'Animation Fade',				component: fade},
+				{path: 'fade_detailed',		name: 'Animation Fade Detailed',	component: fade_detailed},
+				{path: 'timeline',			name: 'Animation Timeline',			component: timeline},
+				{path: 'zoom',				name: 'Animation Zoom',				component: zoom},
+				{path: 'examples_grid',		name: 'Examples Grid',				component: examples_grid},
+				{path: 'simple_examples',	name: 'Samples Grid',				component: simple_examples}
 			]
 		}
 	]

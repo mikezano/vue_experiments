@@ -1,8 +1,8 @@
 <template lang="pug">
-	div
+	.cell
+		button(@click="toggleFading") Fade
 		transition(name="fade")
 			div(v-if="isVisible" class="emoji") 😪
-		button(@click="toggleFading") Fade
 </template>
 
 
@@ -21,9 +21,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import '../../../sass/global.scss';
 
-.emoji{font-size:60px;}
 .fade-enter-active, .fade-leave-active{
 	transition: opacity 2s ease-in;
 }

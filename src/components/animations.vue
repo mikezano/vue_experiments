@@ -16,6 +16,8 @@
 					a(href="#/animations/timeline") Timeline
 				li
 					a(href="#/animations/examples_grid") Examples Grid
+				li
+					a(href="#/animations/simple_examples") Simple Examples
 
 
 		router-view
