@@ -24,11 +24,11 @@ export default {
 <style lang="scss">
 
 .animated-enter-active{
-    animation:travel 1s linear;
+    animation:travel 2s ease-in;
 }
 
 .animated-leave-active{
-    animation:fade-spin 1s linear;
+    animation:fade-spin 2s linear;
 }
 
 @mixin xy($x, $y){
@@ -38,9 +38,12 @@ export default {
 @keyframes travel {
     0%  {   @include xy(0, 0); opacity:0;}
     20% {   @include xy(-50px, 0);}
-    40% {   @include xy(-50px, -50px);}
-    60% {   @include xy(50px, -50px);}
-    80% {   @include xy(50px, 0);}
+    30% {   @include xy(-50px, 50px);}
+    40% {   @include xy(-60px, -50px);}
+    50% {   @include xy(60px, -50px);}
+    60% {   @include xy(50px, -80px);}
+    80% {   @include xy(30px, 0);}
+    90% {   @include xy(-80px, 0);}
     100%{   @include xy(0, 0); opacity:1;}
 }
 

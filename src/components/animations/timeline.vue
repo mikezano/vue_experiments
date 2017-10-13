@@ -1,79 +1,84 @@
 <template lang="pug">
 
-	.cell
+	.main-div
 		.transition-container
 			.emoji(
 				v-if="isEmojiVisible"
 				v-bind:class="{'halfway' : isHalfway()}") 😎
 			
-
-
 		.time-line-container
 			#red-dot
 			.line
 			.time-line
 				#start.step(@click="next($event)") Start
-				#click-leave.step(@click="next($event)") Click
+				#click-leave.step(@click="next($event)") Click Event
 				#one-frame-leave.step(@click="next($event)") 1 Frame later
 				#halfway-leave.step(@click="next($event)") Halfway
 				#done-leave.step(@click="next($event)") Done
-				#click-enter.step(@click="next($event)") Click
+				#click-enter.step(@click="next($event)") Cick Event
 				#one-frame-enter.step(@click="next($event)") 1 Frame later
-				#one-frame-enter.step(@click="next($event)") Halfway
-				#done-enter.step(@click="next($event)") Finish!
+				#halfway-enter.step(@click="next($event)") Halfway
+				#done-enter.step(@click="next($event)") Done
 
 
 		.animation-class-container
 			button(@click="advanceToNext(-1)") &#xab; Prev
 			button(@click="advanceToNext(1)") Next &#xbb;
 
-			.html
-				label HTML
-				
-				pre.blue-code
-					p &lt;transition name=&#34fade&#34&gt;
-					p(v-if="isDisplayDivTag")   &lt;div v-if=&#34isVisible&#34 class=&#34{{currentClassState}}&#34&gt;
-					p &lt;/transition&gt;
-			.css
-				label CSS
-				pre(v-if="isLeaveVisible")
-					span.purple-code fade-leave
-					span.blue-code { opacity: 1;}
-				pre(v-if="isLeaveActiveVisible")
-					span.purple-code fade-leave-active
-					span.blue-code { transition: opacity 5s ease-in;}
-				pre(v-if="isLeaveToVisible")
-					span.purple-code fade-leave-to
-					span.blue-code {opacity: 0;}
-				pre(v-if="isEnterVisible")
-					span.purple-code fade-enter
-					span.blue-code { opacity: 0;}
-				pre(v-if="isEnterActiveVisible")
-					span.purple-code fade-enter-active
-					span.blue-code { transition: opacity 5s ease-in;}
-				pre(v-if="isEnterToVisible")
-					span.purple-code fade-enter-to
-					span.blue-code {opacity: 1;}					
-			.css
+			.js
 				label JS
 				pre
 					span.purple-code isVisible 
-					span.blue-code = {{isVisible}};			
-</template>
+					span.blue-code = {{isVisibleVar}};
+			.html
+				label HTML
+				
+				pre.purple-code
+					p &lt;transition name=&#34fade&#34&gt;
+					p(v-if="isEmojiDivVisible")  &lt;div 
+					p(v-if="isEmojiDivVisible")    v-if=&#34isVisible&#34
+					p(v-if="isEmojiDivVisible")
+						|    class=&#34
+						span.blue-code {{currentClassState}}
+						| &#34&gt;
+					p(v-if="isEmojiDivVisible")    😎
+					p(v-if="isEmojiDivVisible")  &lt;/div&gt;
+					p &lt;/transition&gt;
+			.css
+				label CSS
+				pre(v-bind:class="{'mute' : !isLeaveVisible}")
+					span.purple-code fade-leave
+					span.blue-code { opacity: 1;}
+				pre(v-bind:class="{'mute' : !isLeaveActiveVisible}")
+					span.purple-code fade-leave-active
+					span.blue-code { transition: opacity 5s ease-in;}
+				pre(v-bind:class="{'mute' : !isLeaveToVisible}")
+					span.purple-code fade-leave-to
+					span.blue-code {opacity: 0;}
+				pre(v-bind:class="{'mute' : !isEnterVisible}")
+					span.purple-code fade-enter
+					span.blue-code { opacity: 0;}
+				pre(v-bind:class="{'mute' : !isEnterActiveVisible}")
+					span.purple-code fade-enter-active
+					span.blue-code { transition: opacity 5s ease-in;}
+				pre(v-bind:class="{'mute' : !isEnterToVisible}")
+					span.purple-code fade-enter-to
+					span.blue-code {opacity: 1;}
+	</template>
 
 <script>
 export default {
 	data: () => {
 		return {
-			isVisible:true,
-			isEmojiVisible:true,
+			isVisibleVar:true,
 			isLeaveVisible: true,
 			isLeaveActiveVisible: true,
 			isLeaveToVisible: true,
-			isEnterVisible: true,
-			isEnterActiveVisible: true,
-			isEnterToVisible: true,			
-			isDisplayDivTag: true,
+			isEnterVisible: false,
+			isEnterActiveVisible: false,
+			isEnterToVisible: false,
+			isEmojiVisible: true,
+			isEmojiDivVisible: true,
 			appliedClass: "",
 			classHash: [
 				{ id: "#start", class: "emoji"},
@@ -84,7 +89,8 @@ export default {
 				{ id: "#click-enter", class: "emoji fade-enter fade-enter-active"},
 				{ id: "#one-frame-enter", class: "emoji fade-enter-active fade-enter-to"},
 				{ id: "#halfway-enter", class: "emoji fade-enter-active fade-enter-to"},
-				{ id: "#done-enter", class: "emoji"}			
+				{ id: "#done-enter", class: "emoji"}
+				
 			],
 			currentClassState:"",
 			currentHashItem: null,
@@ -102,54 +108,52 @@ export default {
 	},
 	methods: {
 		isHalfway(){
-			return this.currentHashItem ? this.currentHashItem.id == ("#halfway-leave" || "#halfway-enter") : false;
+			if(this.currentHashItem){
+				return this.currentHashItem.id == "#halfway-leave" || this.currentHashItem.id == "#halfway-enter";
+			}
+			return false;
+		},
+		setVisibilities(ilv, ilav, iltv, iev, ieav, ietv, iemv, iemdv, ivv){
+			this.isLeaveVisible = ilv;
+			this.isLeaveActiveVisible = ilav;
+			this.isLeaveToVisible = iltv;
+			this.isEnterVisible = iev;
+			this.isEnterActiveVisible = ieav;
+			this.isEnterToVisible = ietv;
+			this.isEmojiVisible = iemv;
+			this.isEmojiDivVisible = iemdv;
+			this.isVisibleVar = ivv;
 		},
 		classVisiblility(step){
 			switch(step){
 				case '#start':
-				case '#done-leave':
-					this.isLeaveVisible = false;
-					this.isLeaveActiveVisible = false;
-					this.isLeaveToVisible = false;
-					this.isDisplayDivTag = step == '#done-leave' ? false : true;
-					this.isEmojiVisible = step == '#done-leave' ? false : true;
-					this.isEnterVisible = false;
-					this.isEnterActiveVisible = false;
-					this.isEnterToVisible = false;
+					this.setVisibilities(false, false, false, false, false, false, true, true, true);
 				break;
 				case '#click-leave':
-					this.isLeaveVisible = true;
-					this.isLeaveActiveVisible = true;
-					this.isLeaveToVisible = false;
-					this.isVisible = false;
+					this.setVisibilities(true, true, false, false, false, false, true, true, false);
 				break;
 				case '#one-frame-leave':
+					this.setVisibilities(false, true, true, false, false, false, true, true, false);
+				break;
 				case '#halfway-leave':
-					this.isLeaveVisible = false;
-					this.isLeaveActiveVisible = true;
-					this.isLeaveToVisible = true;
-				break;		
+					this.setVisibilities(false, true, true, false, false, false, true, true, false);
+				break;
+				case '#done-leave':
+					this.setVisibilities(false, false, false, false, false, false, false, false, false);
+				break;
 				case '#click-enter':
-					this.isDisplayDivTag = true;
-					this.isEmojiVisible = false;
-					this.isEnterVisible = true;
-					this.isEnterActiveVisible = true;
-					this.isEnterToVisible = false;	
-					this.isVisible = true;			
-				break;		
+					this.setVisibilities(false, false, false, true, true, false, false, true, true);
+				break;
 				case '#one-frame-enter':
-					this.isEnterVisible = false;
-					this.isEnterToVisible = true;
-					this.isEnterActiveVisible = true;
+					this.setVisibilities(false, false, false, false, true, true, false, true, true);
 				break;
 				case '#halfway-enter':
-					this.isEnterVisible = false;
-					this.isEnterActiveVisible = true;
-					this.isEnterToVisible = true;
-					this.isEmojiVisible = true;
+					this.setVisibilities(false, false, false, false, true, true, true, true, true);
 				break;
 				case '#done-enter':
+					this.setVisibilities(false, false, false, false, false, false, true, true, true);
 				break;
+
 			}
 		},
 		advanceToNext(direction){
@@ -179,137 +183,117 @@ export default {
 			this.currentHashItem = i;
 
 			this.classVisiblility(this.currentHashItem.id);
-		},
-		beforeEnter(){
-			alert('beforeEnter');
-			this.appliedClass = "fade-enter";
-		},
-		enter(){
-			this.appliedClass  = "fade-enter fade-enter-active";
-			alert('enter');
-		},
-		afterEnter(){
-			this.appliedClass = "";
-			alert('afterEnter');
-		},
-		enterCancelled(){
-			alert('enterCancelled');
-		},
-		beforeLeave(){
-			this.appliedClass = "fade-leave";
-			alert('beforeLeave');
-		},
-		leave(){
-			this.appliedClass = "fade-leave fade-leave-active";
-			alert('leave');
-		},
-		afterLeave(){
-			this.appliedClass = "";
-			alert('afterLeave');
-		},
-		leaveCancelled(){
-			alert('leaveCancelled');
-		},
-		toggleFading (){
-			this.isVisible = !this.isVisible;
 		}
 	}
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-	$vue_green: hsla(153, 50%, 48%, 1);
+@import '../../sass/global.scss';
 
-	.fade-enter-active, .fade-leave-active{
-		transition: opacity 5s ease-in;
+
+.main-div{
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+}
+
+
+.transition-container{
+	min-height:140px;
+
+	.emoji{
+		font-size:100px;
 	}
-	.fade-enter, .fade-leave-to{
-		opacity:0;
+}
+
+.halfway{
+	opacity: 0.5;
+}
+.time-line-container{
+	width:80%;
+	position:relative;
+	margin-top:30px;
+
+	#red-dot{
+		position: absolute;
+		z-index:2;
+		width:10px;
+		height: 10px;
+		border-radius: 10px;
+		background-color:red;
+		border:2px solid darken(red, 20%);
+		transition:all 0.5s ease-in-out;
 	}
 
-	.fade-enter-to, .fade-leave{
-		opacity:1;
+	.line{
+		background-color:$vue_green;
+		width:100%;
+		height:4px;
+		position: absolute;
+		top:4px;
+		z-index:0;
 	}
 
-	.transition-container{
-		height:133px;
-	}
-	.halfway{
-		opacity: 0.5;
-	}
-	.time-line-container{
-		width:80%;
-		position:relative;
-		margin-top:30px;
-
-		#red-dot{
-			position: absolute;
-			z-index:2;
-			width:10px;
-			height: 10px;
-			border-radius: 10px;
-			background-color:red;
-			border:2px solid darken(red, 20%);
-			transition:all 0.5s ease-in-out;
+	.time-line{
+		position:absolute;
+		width:100%;
+		display: flex;
+		//align-items:center;
+		//justify-content: space-around;
+		
+		#halfway{
+			flex-grow: 3;
 		}
 
-		.line{
-			background-color:$vue_green;
-			width:100%;
-			height:4px;
-			position: absolute;
-			top:4px;
-			z-index:0;
-		}
-
-		.time-line{
-			position:absolute;
-			width:100%;
-			display: flex;
-			//align-items:center;
-			//justify-content: space-around;
-			
-			#halfway{
-				flex-grow: 3;
+		.step{
+			flex-grow:1;
+			border-bottom:2px solid transparent;
+			text-align:left;
+			&:hover{
+				cursor: pointer;
+				border-bottom:2px solid $vue_green;
 			}
-
-			.step{
-				flex-grow:1;
-				border-bottom:2px solid transparent;
-				text-align:left;
-				&:hover{
-					cursor: pointer;
-					border-bottom:2px solid $vue_green;
-				}
-				&:before{
-					content: "";
-					display:block;
-					width:10px;
-					height: 10px;
-					border-radius:10px;
-					background-color:$vue_green;
-					border:2px solid darken($vue_green, 20%);
-				}
+			&:before{
+				content: "";
+				display:block;
+				width:10px;
+				height: 10px;
+				border-radius:10px;
+				background-color:$vue_green;
+				border:2px solid darken($vue_green, 20%);
 			}
 		}
 	}
+}
 
 	.animation-class-container{
 		
-		.html, .css{
+		.html, .css, .js{
 			background-color:#333;
-			padding:10px;
-			margin:10px;
-			height:150px;
+			padding:4px 8px;
+			margin:4px;
+
 			label{
 				color:white;
 			}
+
+			p{padding:0; margin:0;}
+		}
+
+		.js{
+			margin-top:20px;
 		}
 		padding-top:60px;
 		pre{
-			font-size:20px;
+			font-size:16px;
 			text-align:left;
+			margin:0;
+
+			&.mute span{
+				color:#555;
+			}
 		}
 		.purple-code{
 			color: lighten(purple, 10%);

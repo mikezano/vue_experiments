@@ -1,14 +1,14 @@
 <template>
     <div class="grid">
         <fade></fade>
-        <slide></slide>     
+        <slide></slide>
         <zoom></zoom>
-        <in_out></in_out>                        
+        <in_out></in_out>
         <out_in></out_in>
-        <flip></flip>   
-        <animation></animation>                         
+        <flip></flip>
+        <animation></animation>
         <enter_hooks></enter_hooks>
-        <leave_hooks></leave_hooks>                      
+        <leave_hooks></leave_hooks>
     </div>
 </template>
 
@@ -16,15 +16,15 @@
 
 import 'vue-awesome/icons/close'
 import icon from 'vue-awesome/components/Icon'
-import fade from './effects_examples/fade'
-import slide from './effects_examples/slide'
-import zoom from './effects_examples/zoom'
-import in_out from './effects_examples/in_out'
-import out_in from './effects_examples/out_in'
-import flip from './effects_examples/flip'
-import animation from './effects_examples/animation'
-import enter_hooks from './effects_examples/enter_hooks'
-import leave_hooks from './effects_examples/leave_hooks'
+import fade from './examples/fade'
+import slide from './examples/slide'
+import zoom from './examples/zoom'
+import in_out from './examples/in_out'
+import out_in from './examples/out_in'
+import flip from './examples/flip'
+import animation from './examples/animation'
+import enter_hooks from './examples/enter_hooks'
+import leave_hooks from './examples/leave_hooks'
 
 export default {
     data: () => {
@@ -52,7 +52,8 @@ export default {
 
 <style lang="scss">
 
-$vue_green: hsla(153, 50%, 48%, 1);
+@import '../../sass/global';
+
 
 .grid{
 	position:absolute;
@@ -64,17 +65,6 @@ $vue_green: hsla(153, 50%, 48%, 1);
 	grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows:  33.3% 33.3% 33.3%;
     grid-gap:10px;
-
-
-    @import '../sass/global';
-
-}
-
-.fade-enter-active, .fade-leave-active{
-    transition: opacity 5s ease-in;
-}
-.fade-enter, .fade-leave-to{
-    opacity:0;
 }
 
 </style>

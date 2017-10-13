@@ -23,7 +23,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import '../../../sass/global.scss';
 
 .flip-enter-active {
   transition: all .2s cubic-bezier(0.55, 0.085, 0.68, 0.53); //ease-in-quad
