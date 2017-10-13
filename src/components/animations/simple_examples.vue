@@ -44,7 +44,7 @@ export default {
     height:500px;
 	margin:auto;
 	display:grid;
-	//grid-template-columns: 33.3% 33.3% 33.3%;
+    //grid-template-columns: 33.3% 33.3% 33.3%;
     grid-template-rows:  33.3% 33.3% 33.3%;
     grid-gap:10px;
     

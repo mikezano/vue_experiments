@@ -28,7 +28,7 @@
 			.js
 				label JS
 				pre
-					span.purple-code isVisible 
+					span.purple-code var isVisible 
 					span.blue-code = {{isVisibleVar}};
 			.html
 				label HTML

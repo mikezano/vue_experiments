@@ -19,10 +19,9 @@
 				li
 					a(href="#/animations/simple_examples") Simple Examples
 				li
-					a(href="#/animations/in_out_examples") In & Outs Examples					
+					a(href="#/animations/in_out_examples") In & Outs Examples
 				li
-					a(href="#/animations/hooks_examples") Hooks Examples					
-
+					a(href="#/animations/hooks_examples") Hooks Examples
 
 		router-view
 </template>
