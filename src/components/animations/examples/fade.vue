@@ -2,7 +2,7 @@
 	.cell
 		button(@click="toggleFading") Fade
 		transition(name="fade")
-			div(v-if="isVisible" class="emoji") 😪
+			div(v-if="isVisible" class="emoji") 🐼
 </template>
 
 

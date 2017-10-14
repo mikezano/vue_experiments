@@ -2,7 +2,7 @@
     .cell
         button(@click="toggleAnimation") Animation
         transition(name="animated")
-            .emoji(v-if="isAnimating") 😰
+            .emoji(v-if="isAnimating") 🙌
 </template>
 
 

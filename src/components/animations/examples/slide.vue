@@ -2,7 +2,7 @@
     .cell
         button(@click="toggleSlide") Slide
         transition(name="slide")
-            div(v-if="isSliding" class="emoji") 😡
+            div(v-if="isSliding" class="emoji") 🏄
 </template>
 
 

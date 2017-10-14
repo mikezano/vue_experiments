@@ -7,7 +7,7 @@
 			v-on:leave="leave"
 			v-on:after-leave="afterLeave"
 			v-on:leave-cancelled="leaveCancelled")
-			.emoji(v-if="isLeavingHooks") 🤡
+			.emoji(v-if="isLeavingHooks") 🙈
 </template>
 
 
