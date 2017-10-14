@@ -56,7 +56,7 @@ export default {
 <style lang="scss" scoped>
 
 .animated-enter-active{
-	animation:travel 1s linear;
+	animation:travel 4s linear;
 }
 
 .animated-leave-active{

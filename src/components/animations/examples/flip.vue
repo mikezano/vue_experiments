@@ -2,8 +2,8 @@
     .cell
         button(@click="toggleFlip") Flip
         transition(name="flip" mode="out-in")
-            .emoji(v-if="isFlipping" key="before" ) 😀
-            .emoji(v-else key="after") ️️️️️️🙃
+            .emoji(v-if="isFlipping" key="before" ) 🌞
+            .emoji(v-else key="after") ️️️️️️🌚
 
 </template>
 
