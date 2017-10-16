@@ -1,24 +1,18 @@
-<template>
-	<div class="side-menu">
-		<div  @click="close">
-			<icon name="close" class="close-icon" ></icon>
-		</div>
-		<div class='header'>
-			<img src="./../assets/logo.png">
-			<p>Experiments</p>
-		</div>
+<template lang="pug">
+	.side-menu
+		div(@click="close")
+			icon(name="close" class="close-icon")
+		.header
+			img(src="./../assets/logo.png")
+			p Experiments
 		
-		<ul>
-			<li><a href="#/environment">Environment</a></li>
-			<li><a href="#/async">Async</a></li>
-			<li><a href="#/background">Animated Background</a></li>
-			<li><a href="#/gsap">Green Sock Test</a></li>
-			<li><a href="#/gsap_auto">Green Sock Rectangles</a></li>
-			<li><a href="#/guess_number">Guess Number</a></li>
-			<li><a href="#/animations">Animations</a></li>
-
-		</ul>
-	</div>
+		ul
+			router-link(to="/environment" tag="li") Environment
+			router-link(to="/background" tag="li") Animated Background
+			router-link(to="/gsap" tag="li") Green Sock
+			router-link(to="/gsap_auto" tag="li") Green Sock Auto
+			router-link(to="/guess_number" tag="li") Guess Number
+			router-link(to="/animations" tag="li") Animations
 </template>
 
 <script>
