@@ -4,24 +4,15 @@
 			label Select Example
 				.caret &dArr;
 			ul
-				li
-					a(href="#/animations/fade") Fade
-				li
-					a(href="#/animations/fade_detailed") Fade Detailed
-				li
-					a(href="#/animations/zoom") Zoom
-				li
-					a(href="#/animations/template") Template
-				li
-					a(href="#/animations/timeline") Timeline
-				li
-					a(href="#/animations/examples_grid") Examples Grid
-				li
-					a(href="#/animations/simple_examples") Simple Examples
-				li
-					a(href="#/animations/in_out_examples") In & Outs Examples
-				li
-					a(href="#/animations/hooks_examples") Hooks Examples
+				router-link(to="/animations/fade" tag="li") Fade
+				router-link(to="/animations/fade_detailed" tag="li") Fade Detailed
+				router-link(to="/animations/zoom" tag="li") Zoom
+				router-link(to="/animations/template" tag="li") Template
+				router-link(to="/animations/timeline" tag="li") Timeline
+				router-link(to="/animations/examples_grid" tag="li") Examples Grid
+				router-link(to="/animations/simple_examples" tag="li") Simple Examples
+				router-link(to="/animations/in_out_examples" tag="li") In & Outs Example
+				router-link(to="/animations/hooks_examples" tag="li") Hooks Examples
 
 		transition(name="fade")
 			router-view
