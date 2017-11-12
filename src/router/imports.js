@@ -1,7 +1,4 @@
-
-import Vue				from 'vue'
-import Router			from 'vue-router'
-import Hello			from '@/components/Hello'
+import hello			from '@/components/hello'
 import environment		from '@/components/environment/environment'
 import animated_background from '@/components/animated_background'
 import gsap				from '@/components/gsap'
@@ -19,10 +16,8 @@ import timeline			from '@/components/animations/timeline'
 import zoom				from '@/components/animations/zoom'
 import template			from '@/components/animations/template'
 
-export default{
-	Vue,
-	Router,
-	Hello,
+export default {
+	hello,
 	environment,
 	animated_background,
 	gsap,

@@ -1,17 +1,19 @@
-import * as i from '@/router/imports.js'
+import Vue		from 'vue'
+import Router	from 'vue-router'
+import i 		from '@/router/imports.js'
 
 Vue.use(Router)
 
 export default new Router({
 	routes: [
-		{path: '/',					name: 'Hello',					component: i.Hello},
+		{path: '/',					name: 'hello',					component: i.hello},
 		{path: '/environment',		name: 'Environment',			component: i.environment},
 		{path: '/background',		name: 'Animated Background',	component: i.animated_background},
 		{path: '/gsap',				name: 'Green Sock',				component: i.gsap},
 		{path: '/gsap_auto',		name: 'Green Sock Auto',		component: i.gsap_auto},
 		{path: '/guess_number',		name: 'Guess Number',			component: i.guess_number},
 		{path: '/animations/',
-			component: animations,
+			component: i.animations,
 			children: [
 				{path: 'template',			name: 'Animation Template',			component: i.template},
 				{path: 'fade',				name: 'Animation Fade',				component: i.fade},
@@ -27,7 +29,7 @@ export default new Router({
 		{
 			path: '/style_guide',
 			name: 'Style Guide',
-			component: style_guide,
+			component: i.style_guide,
 			children: [
 				//{path: 'buttons',		name: 'Buttons',		component: buttons}
 			]
