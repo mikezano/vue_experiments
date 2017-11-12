@@ -87,7 +87,7 @@ export default {
 		padding:0;
 		position:absolute;
 		border:2px solid $vue_green;
-		background-color:white;
+		background-color: hsla(360, 100%, 100%, 0.9);
 
 		li{
 			margin:0;

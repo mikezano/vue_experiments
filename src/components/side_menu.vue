@@ -13,6 +13,7 @@
 			router-link(to="/gsap_auto" tag="li") Green Sock Auto
 			router-link(to="/guess_number" tag="li") Guess Number
 			router-link(to="/animations" tag="li") Animations
+			router-link(to="/style_guide" tag="li") Style Guide
 </template>
 
 <script>
