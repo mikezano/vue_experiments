@@ -14,6 +14,7 @@
 			router-link(to="/guess_number" tag="li") Guess Number
 			router-link(to="/animations" tag="li") Animations
 			router-link(to="/style_guide" tag="li") Style Guide
+			router-link(to="/async" tag="li") Async
 </template>
 
 <script>

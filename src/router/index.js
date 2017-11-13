@@ -1,6 +1,7 @@
 import Vue		from 'vue'
 import Router	from 'vue-router'
 import i 		from '@/router/imports.js'
+import indexes	from '@/router/indexes.js'
 
 Vue.use(Router)
 
@@ -33,6 +34,7 @@ export default new Router({
 			children: [
 				//{path: 'buttons',		name: 'Buttons',		component: buttons}
 			]
-		}
+		},
+		{path: '/async/',			name: 'Async',			component: indexes.async}
 	]
 })
