@@ -10,7 +10,7 @@
 			router-link(to="/environment" tag="li") Environment
 			router-link(to="/background" tag="li") Animated Background
 			router-link(to="/gsap" tag="li") Green Sock
-			router-link(to="/gsap_auto" tag="li") Green Sock Auto
+			router-link(to="/svg_rectangles" tag="li") Green Sock SVG
 			router-link(to="/guess_number" tag="li") Guess Number
 			router-link(to="/animations" tag="li") Animations
 			router-link(to="/style_guide" tag="li") Style Guide
