@@ -8,6 +8,7 @@
 
 <script>
 export default {
+	name: 'fade',
 	data: () => {
 		return {
 			isVisible:true

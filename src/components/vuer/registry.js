@@ -1,8 +1,8 @@
-const ctx = require.context('../../src/', true, /.*.vue$/)
-const ctxraw = require.context('!!raw-loader!../../src/', true, /.*.vue$/)
+const ctx = require.context('../../../src/', true, /.*.vue$/)
+const ctxraw = require.context('!!raw-loader!../../../src/', true, /.*.vue$/)
 const components = ctx.keys().map(ctx)
 const components_source = ctxraw.keys().map(ctxraw)
-console.log(components_source)
+//console.log(components_source)
 
 export default {
 	components,

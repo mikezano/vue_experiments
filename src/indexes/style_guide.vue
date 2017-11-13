@@ -1,6 +1,6 @@
 <template lang="pug">
 	.container
-		viewer
+
 		pre(style="text-align:left;") {{testing}}
 		.dropdown
 			label Select Example
@@ -9,13 +9,16 @@
 				router-link(to="/style_guide/buttons" tag="li") Buttons
 				router-link(to="/style_guide/cards" tag="li") Cards
 				router-link(to="/style_guide/tabs" tag="li") Tabs
+
+		vuer(name='fade')
+		vuer(name='zoom')
 		transition(name="fade")
 			router-view
 </template>
 
 <script>
 
-import viewer from './viewer.vue'
+import vuer from '@/components/vuer/vuer'
 
 export default {
 	name: 'hello',
@@ -26,7 +29,7 @@ export default {
 		}	
 	},
 	mounted(){
-		console.log(this.testing);
+		//console.log(this.testing);
 		// this.getFile("GET", `src/App.vue`, (result)=>{
 		// 	// this.pug = result;
 		// 	console.log(result);
@@ -47,7 +50,7 @@ export default {
 		}
 	},
 	components:{
-		viewer
+		vuer
 	}
 }
 </script>
