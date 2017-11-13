@@ -72,6 +72,7 @@ import 'vue-awesome/icons/chevron-circle-down'
 import icon from 'vue-awesome/components/Icon'
 
 export default {
+	name: 'animated_bg',
 	components: {
 		icon
 	},

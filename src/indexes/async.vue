@@ -11,7 +11,7 @@
 import {mapMutations} from 'vuex'
 
 export default {
-	name: 'app',
+	name: 'async',
 	data () {
 		return {
 			msg: 'Hello World'

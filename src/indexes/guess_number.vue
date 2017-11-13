@@ -36,6 +36,7 @@ import 'vue-awesome/icons/chevron-circle-down'
 import icon from 'vue-awesome/components/Icon'
 
 export default {
+    name: 'guess_number',
     data () {
         return{
             targetNumber: -1,

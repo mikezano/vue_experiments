@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'main',
   data () {
     return {
       msg: 'Zano'

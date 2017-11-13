@@ -1,5 +1,7 @@
 <template lang="pug">
 	.container
+		viewer
+		pre(style="text-align:left;") {{testing}}
 		.dropdown
 			label Select Example
 				.caret &dArr;
@@ -12,13 +14,41 @@
 </template>
 
 <script>
+
+import viewer from './viewer.vue'
+
 export default {
-  name: 'hello',
-  data () {
-	return {
-	  msg: 'Zano'
+	name: 'hello',
+	data () {
+		return {
+			msg: 'Zano',
+			testing: ''
+		}	
+	},
+	mounted(){
+		console.log(this.testing);
+		// this.getFile("GET", `src/App.vue`, (result)=>{
+		// 	// this.pug = result;
+		// 	console.log(result);
+		// 	// setTimeout(()=>{
+		// 	// 	Prism.highlightElement(this.pugElement, false);
+		// 	// }, 10);			
+		// })	
+		
+	},
+	methods:{
+		getFile (method, url, done) {
+			var xhr = new XMLHttpRequest();
+			xhr.open(method, url);
+			xhr.onload = function () {
+				done(xhr.response);
+			};
+			xhr.send();
+		}
+	},
+	components:{
+		viewer
 	}
-  }
 }
 </script>
 
@@ -26,6 +56,13 @@ export default {
 <style lang="scss" scoped>
 
 @import '../sass/global.scss';
+
+pre{
+	background-color: #555;
+	color: white;
+	text-align:left;
+	width:400px;
+}
 .dropdown{
 	margin:auto;
 	width:200px;
