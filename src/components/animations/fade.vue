@@ -1,8 +1,8 @@
 <template lang="pug">
-	div
-		transition(name="fade")
-			div(v-if="isVisible" class="emoji") 😪
-		button(@click="toggleFading") Fade
+div
+	transition(name="fade")
+		div(v-if="isVisible" class="emoji") 😪
+	button(@click="toggleFading") Fade
 </template>
 
 

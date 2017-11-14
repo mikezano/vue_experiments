@@ -12,6 +12,8 @@
 
 		vuer(name='fade')
 		vuer(name='zoom')
+		vuer(name='zoom_button')
+		vuer(name='spin_button')
 		transition(name="fade")
 			router-view
 </template>

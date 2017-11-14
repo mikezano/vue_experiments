@@ -1,14 +1,15 @@
 <template lang="pug">
+
 	.ex
 		.ex__header
 			| {{name}}
 		.ex__output
 			component(:is="getcomponent(name)")
 		.ex__code
-			input#scss(type="radio" name="code" checked)
-			label(for="scss") SCSS
-			input(id="pug" type="radio" name="code")
-			label(for="pug") PUG
+			input(v-bind:id="scssId" type="radio" v-bind:name="nameId" checked)
+			label(v-bind:for="scssId") SCSS
+			input(v-bind:id="pugId" type="radio" v-bind:name="nameId")
+			label(v-bind:for="pugId") PUG
 			.content
 				.content1
 					pre.language-css  
@@ -16,6 +17,7 @@
 				.content2
 					pre.language-js
 						code(v-html="pug")
+
 </template>
 
 <script>
@@ -29,17 +31,34 @@ export default {
 			code: '',
 			html_highlight: '',
 			scss: null,
-			pug: null
+			pug: null,
+			scssId: this.randomString(16),
+			pugId: this.randomString(16),
+			nameId: this.randomString(16)
 		}
 	},
 	mounted(){
 		this.showSource();
+		let cssBlock = `
+			#${this.scssId}:checked ~ .content .content1,
+			#${this.pugId}:checked ~ .content .content2{
+				display:block;
+			}`;
+		let style = document.createElement('style');
+		style.type = 'text/css';
+		//style.styleSheet.cssText = cssBlock;
+		style.appendChild(document.createTextNode(cssBlock));
+
+		document.head.appendChild(style);
 	},
 	methods: {
 		getcomponent(name){
 			return registry.get(name);
 		},
 		showSource(){
+
+
+
 			let source = 
 				this.getcomponent(this.name)
 				.source
@@ -50,9 +69,9 @@ export default {
 			//var pugPattern = /(?<=<template lang=pug>)/s;
 
 			this.pug = source.match(pugRE);
-			this.pug = this.pug[0].replace(/\n/g, ' ');
+			this.pug = this.pug[0].replace(/\n/g, ' ').trim();
 			this.scss = source.match(scssRE);
-			this.scss = this.scss[0].replace(/\n/g, ' ');
+			this.scss = this.scss[0].replace(/\n/g, ' ').trim();
 
 			// this.code = 
 			// 	this.getcomponent(this.name)
@@ -63,6 +82,14 @@ export default {
 		},
 		showLive(){
 			this.showcode = false;
+		},
+		randomString(length) {
+			var text = "";
+			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+			for(var i = 0; i < length; i++) {
+				text += possible.charAt(Math.floor(Math.random() * possible.length));
+			}
+			return text;
 		}
 	},
 	components: {},
@@ -74,11 +101,6 @@ export default {
 
 pre{
 	white-space: pre-wrap;
-}
-
-#scss:checked ~ .content .content1,
-#pug:checked ~ .content .content2{
-	display:block;
 }
 
 .content > div { display:none; }

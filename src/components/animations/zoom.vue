@@ -1,11 +1,11 @@
 <template lang="pug">
-	.container
-		.cell
-			.transition-container
-				transition(name="zoom")
-					div(v-if="isFading" class="emoji") 😪
-			button(@click="toggleFading") Zoom
-			pre &lt;div class=&#34{{appliedClass}}&#34&gt;
+.container
+	.cell
+		.transition-container
+			transition(name="zoom")
+				div(v-if="isFading" class="emoji") 😪
+		button(@click="toggleFading") Zoom
+		pre &lt;div class=&#34{{appliedClass}}&#34&gt;
 </template>
 
 
