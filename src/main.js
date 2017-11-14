@@ -12,6 +12,7 @@ Vue.use(VuePrism)
 
 
 import 'prismjs/themes/prism-tomorrow.css'
+//import registry from './components/vuer/registry';
 
 /* eslint-disable no-new */
 new Vue({

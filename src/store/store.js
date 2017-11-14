@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import registry from '../components/vuer/registry';
 
 Vue.use(Vuex);
 
@@ -18,6 +19,10 @@ export const store = new Vuex.Store({
 		},
 		decrement: (state) => {
 			state.counter--;
+		},
+		getComponent: (name)=>{
+			debugger;
+			return registry.get(name);
 		}
 	},
 	actions: {

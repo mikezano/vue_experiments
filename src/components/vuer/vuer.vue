@@ -1,5 +1,6 @@
 <template lang="pug">
-	.ex
+	h1 Done
+	//.ex
 		.ex__header
 			| {{name}}
 		.ex__output
@@ -20,7 +21,8 @@
 </template>
 
 <script>
-import registry from './registry';
+//import registry from './registry';
+import {mapMutations} from 'vuex'
 
 export default {
 	name: 'viewer',
@@ -37,6 +39,7 @@ export default {
 		}
 	},
 	mounted(){
+		
 		this.showSource();
 		let cssBlock = `
 			#${this.scssId}:checked ~ .content .content1,
@@ -51,13 +54,11 @@ export default {
 		document.head.appendChild(style);
 	},
 	methods: {
-		getcomponent(name){
-			return registry.get(name);
-		},
+		...mapMutations(['decrement','increment','getComponent']),
 		showSource(){
 
 			let source = 
-				this.getcomponent(this.name)
+				this.getComponent(this.name)
 				.source
 				.replace(/\t/g,'  ');
 
