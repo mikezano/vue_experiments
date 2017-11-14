@@ -10,20 +10,22 @@
 				router-link(to="/style_guide/cards" tag="li") Cards
 				router-link(to="/style_guide/tabs" tag="li") Tabs
 
-		vuer(name='fade')
-		vuer(name='zoom')
-		vuer(name='zoom_button')
-		vuer(name='spin_button')
-		transition(name="fade")
+		//- vuer(name='fade')
+		//vuer(name='zoom')
+		//- vuer(name='zoom_button')
+		//vuer(name='spin_button')
+		buttons
+		//transition(name="fade")
 			router-view
 </template>
 
 <script>
 
 import vuer from '@/components/vuer/vuer'
+import buttons from '@/indexes/style_guide/buttons'
 
 export default {
-	name: 'hello',
+	name: 'style_guide_index',
 	data () {
 		return {
 			msg: 'Zano',
@@ -52,7 +54,8 @@ export default {
 		}
 	},
 	components:{
-		vuer
+		vuer,
+		buttons
 	}
 }
 </script>
@@ -60,7 +63,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-@import '../sass/global.scss';
+@import '../../sass/global.scss';
 
 pre{
 	background-color: #555;

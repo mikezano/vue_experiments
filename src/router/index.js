@@ -1,7 +1,8 @@
-import Vue		from 'vue'
-import Router	from 'vue-router'
-import animate	from '@/router/animations.js'
-import indexes	from '@/router/indexes.js'
+import Vue			from 'vue'
+import Router		from 'vue-router'
+import animate		from '@/router/animations.js'
+import indexes		from '@/router/indexes.js'
+import style_guide	from '@/router/style_guide.js'
 
 Vue.use(Router)
 
@@ -29,11 +30,11 @@ export default new Router({
 			]
 		},
 		{
-			path: '/style_guide',
+			path: '/style_guide/',
 			name: 'Style Guide',
 			component: indexes.style_guide,
 			children: [
-				//{path: 'buttons',		name: 'Buttons',		component: buttons}
+				{path: 'buttons',		name: 'Buttons',		component: style_guide.buttons}
 			]
 		},
 		{path: '/async/',			name: 'Async',			component: indexes.async}

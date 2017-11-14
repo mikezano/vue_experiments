@@ -1,5 +1,4 @@
 <template lang="pug">
-
 	.ex
 		.ex__header
 			| {{name}}
@@ -56,8 +55,6 @@ export default {
 			return registry.get(name);
 		},
 		showSource(){
-
-
 
 			let source = 
 				this.getcomponent(this.name)
