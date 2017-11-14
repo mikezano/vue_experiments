@@ -1,10 +1,9 @@
 <template lang="pug">
-	h1 Done
-	//.ex
+	.ex
 		.ex__header
 			| {{name}}
 		.ex__output
-			component(:is="getcomponent(name)")
+			component(:is="component")
 		.ex__code
 			input(v-bind:id="scssId" type="radio" v-bind:name="nameId" checked)
 			label(v-bind:for="scssId") SCSS
@@ -22,7 +21,7 @@
 
 <script>
 //import registry from './registry';
-import {mapMutations} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
 	name: 'viewer',
@@ -33,6 +32,7 @@ export default {
 			html_highlight: '',
 			scss: null,
 			pug: null,
+			component: null,
 			scssId: this.randomString(16),
 			pugId: this.randomString(16),
 			nameId: this.randomString(16)
@@ -53,12 +53,14 @@ export default {
 
 		document.head.appendChild(style);
 	},
+	computed: {
+		...mapGetters(['getComponent'])
+	},
 	methods: {
-		...mapMutations(['decrement','increment','getComponent']),
 		showSource(){
-
+			this.component = this.getComponent(this.name);
 			let source = 
-				this.getComponent(this.name)
+				this.component
 				.source
 				.replace(/\t/g,'  ');
 

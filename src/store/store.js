@@ -1,17 +1,23 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import registry from '../components/vuer/registry';
+import registry from './registry';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+
 	state: {
-		counter: 2
+		counter: 2,
+		registry: registry
 	},
 	getters: {
 		tripleCounter: state => {
 			return state.counter * 3;
-		}
+		},
+		getComponent: (state, getters)=>(name)=>{
+			var result  = state.registry.get(name);
+			return result;
+		}		
 	},
 	mutations: {
 		increment: (state, num) => {
@@ -19,10 +25,6 @@ export const store = new Vuex.Store({
 		},
 		decrement: (state) => {
 			state.counter--;
-		},
-		getComponent: (name)=>{
-			debugger;
-			return registry.get(name);
 		}
 	},
 	actions: {

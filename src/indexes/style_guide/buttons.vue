@@ -1,9 +1,9 @@
 <template lang="pug">
 	.container
 		h1 Buttons
-		//vuer(name="hello")
+		vuer(name="hello")
 		vuer(name='spin_button')
-		//zoom
+		vuer(name="zoom")
 </template>
 
 
