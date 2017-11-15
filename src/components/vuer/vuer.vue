@@ -119,8 +119,9 @@ input:checked + label {
 }
 
 .ex{
-	$border-color: hsla(0,0%,60%,100%);
+	$border-color: hsla(0,0%,60%,1);
 	border:1px solid $border-color;
+	background-color: hsla(0,0%,60%,.3);
 	margin:10px;
 	display:grid;
 	grid-template-columns: 40% 60%;

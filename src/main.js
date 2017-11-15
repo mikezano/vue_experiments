@@ -12,6 +12,9 @@ Vue.use(VuePrism)
 
 
 import 'prismjs/themes/prism-atomdark.css'
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
+Vue.component('icon', Icon);
 //import registry from './components/vuer/registry';
 
 /* eslint-disable no-new */

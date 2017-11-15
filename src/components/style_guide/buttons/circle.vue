@@ -1,28 +1,29 @@
 <template lang="pug">
 	.container
 		button.circle
-			i.fa.fa-refresh
+			icon(name="refresh" scale="1")
 		button.circle
-			i.fa.fa-bath
+			icon(name="bath", scale="1")
 		button.circle
-			i.fa.fa-blind
+			icon(name="blind", scale="1")
 		button.circle
-			i.fa.fa-truck
+			icon(name="truck", scale="1")
 		button.circle-lg
-			i.fa.fa-apple
+			icon(name="apple", scale="1")
 </template>
 
 
 <script>
+
 	export default{
-		name: 'Circle'
+		name: 'Circle',
+
 	}
 </script>
 
 <style lang="scss" scoped>
 
-@mixin circle-button($color, $size){
-
+@mixin circle-btn($color, $size){
 	border:none;
 	background-color:$color;
 	color:black;
@@ -32,7 +33,9 @@
 	font-size: $size/2;
 	border-radius: $size/2;
 	box-shadow:2px 2px 4px hsla(0,0%,0%,1);
-	transition: transform .1s ease-out, box-shadow .1s ease-out;
+	transition: 
+		transform .1s ease-out, 
+		box-shadow .1s ease-out;
 	&:hover{
 		transform:scale(1.1);
 		box-shadow:3px 3px 5px hsla(0,0%,0%,.5);
@@ -40,8 +43,6 @@
 		cursor:pointer;
 	}
 }
-
-.circle{@include circle-button(lightblue, 24px);}
-
-.circle-lg{@include circle-button(pink, 48px);}
+.circle{@include circle-btn(lightblue, 24px);}
+.circle-lg{@include circle-btn(pink, 48px);}
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
 	button.spin-btn
-		| Test
+		icon(name="plus" scale="5")
 </template>
 
 
@@ -18,7 +18,9 @@
 	border:none;
 	background:none;
 	color:$color;
-	transition: transform .5s ease-out, color .7s ease-out;
+	transition: 
+		transform .5s ease-out, 
+		color .7s ease-out;
 	transform-origin: 50% 50%;
 	display:flex;
 	align-items: center;
