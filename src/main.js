@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 Vue.use(VuePrism)
 
 
-import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/themes/prism-atomdark.css'
 //import registry from './components/vuer/registry';
 
 /* eslint-disable no-new */

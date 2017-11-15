@@ -10,12 +10,7 @@
 				router-link(to="/style_guide/cards" tag="li") Cards
 				router-link(to="/style_guide/tabs" tag="li") Tabs
 
-		//- vuer(name='fade')
-		//vuer(name='zoom')
-		//- vuer(name='zoom_button')
-		//vuer(name='spin_button')
-		buttons
-		//transition(name="fade")
+		transition(name="fade")
 			router-view
 </template>
 

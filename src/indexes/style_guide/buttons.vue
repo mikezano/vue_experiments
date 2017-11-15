@@ -1,16 +1,13 @@
 <template lang="pug">
 	.container
-		h1 Buttons
-		vuer(name="hello")
+		vuer(name="Circle")
 		vuer(name='spin_button')
-		vuer(name="zoom")
+		vuer(name="zoom_button")
 </template>
 
 
 <script>
 import vuer from '@/components/vuer/vuer'
-//import spin from '@/components/style_guide/buttons/spin'
-import zoom from '@/components/style_guide/buttons/zoom'
 
 export default {
 	name: 'buttons_stuff',
@@ -18,11 +15,16 @@ export default {
 		return {}
 	},
 	components: {
-		vuer,
-		zoom
+		vuer
 	}
 }
 </script>
 
 <style lang="scss" scoped>
+.container{
+	display:flex;
+	flex-direction:column;
+	//justify-content: center;
+	align-items: center;
+}
 </style>

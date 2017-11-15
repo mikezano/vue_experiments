@@ -72,12 +72,6 @@ export default {
 			this.pug = this.pug[0].replace(/\n/g, ' ').trim();
 			this.scss = source.match(scssRE);
 			this.scss = this.scss[0].replace(/\n/g, ' ').trim();
-
-			// this.code = 
-			// 	this.getcomponent(this.name)
-			// 	.source
-			// 	.replace(/\t/g,'  ');
-			//this.html_highlight = prism.highlight(this.code, prism.languages.haml);
 			this.showcode = true;
 		},
 		showLive(){
@@ -92,12 +86,13 @@ export default {
 			return text;
 		}
 	},
-	components: {},
 	props: ['name']
 }
 </script>
 
 <style lang="scss" scoped>
+
+@import '../../sass/global.scss';
 
 pre{
 	white-space: pre-wrap;
@@ -107,7 +102,7 @@ pre{
 input {display: none;}
 label {
 	display: inline-block; 
-	padding: 10px 20px; 
+	padding: 5px 10px; 
 	font-weight: 600; 
 	text-align: center;
 	margin:0 2px;
@@ -115,12 +110,12 @@ label {
 	transition: all .2s ease-out;
 }
 label:hover {
-	color: #fff; 
+	color: lighten($vue_green, 20%); 
 	cursor: pointer;
-	border-bottom: 4px solid white;
+	border-bottom: 4px solid lighten($vue_green, 20%);
 }
 input:checked + label {
-	border-bottom: 4px solid orange;
+	border-bottom: 4px solid $vue_green;;
 }
 
 .ex{
@@ -137,10 +132,10 @@ input:checked + label {
 		grid-row:1;
 		grid-column:1/3;
 		text-align: center;
-		color:orange;
-		margin:10px;
-		letter-spacing: 1px;
+		color:$vue_green;
 		font-size:20px;
+		font-weight:bold;
+		margin:4px;
 	}
 
 	&__output{
