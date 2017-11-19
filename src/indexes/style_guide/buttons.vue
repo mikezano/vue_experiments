@@ -3,6 +3,7 @@
 		vuer(name="Circle")
 		vuer(name="Spin")
 		vuer(name="Zoom")
+		vuer(name="Drop-Down")
 </template>
 
 

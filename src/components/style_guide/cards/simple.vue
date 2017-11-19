@@ -11,7 +11,7 @@
 
 <script>
 	export default{
-		name: 'card_simple'
+		name: 'Simple'
 	}
 </script>
 

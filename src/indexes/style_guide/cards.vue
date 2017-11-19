@@ -1,7 +1,7 @@
 <template lang="pug">
 	.container
-		| Cards
-		vuer(name="card_simple")
+
+		vuer(name="Simple")
 </template>
 
 

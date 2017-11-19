@@ -9,6 +9,8 @@ Vue.use(Router)
 export default new Router({
 	routes: [
 		{path: '/',					name: 'Main',					component: indexes.main},
+		{path: '/test',					name: 'Test',					component: indexes.test},
+
 		{path: '/environment',		name: 'Environment',			component: indexes.environment},
 		{path: '/background',		name: 'Animated Background',	component: indexes.animated_background},
 		{path: '/gsap',				name: 'Green Sock',				component: indexes.gsap},
