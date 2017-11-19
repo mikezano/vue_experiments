@@ -1,8 +1,6 @@
 <template lang="pug">
 	.container
-		vuer(name="Circle")
-		vuer(name="Spin")
-		vuer(name="Zoom")
+		| Tabs
 </template>
 
 
@@ -10,7 +8,7 @@
 import vuer from '@/components/vuer/vuer'
 
 export default {
-	name: 'buttons_stuff',
+	name: 'index_tabs',
 	data () {
 		return {}
 	},
@@ -24,7 +22,6 @@ export default {
 .container{
 	display:flex;
 	flex-direction:column;
-	//justify-content: center;
 	align-items: center;
 }
 </style>

@@ -6,7 +6,7 @@
 
 <script>
 	export default{
-		name: 'spin_button'
+		name: 'Spin'
 	}
 </script>
 

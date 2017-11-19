@@ -58,6 +58,8 @@ export default {
 
 <style lang="scss">
 
+html{overflow-y:scroll;}
+
 .fade-enter-active, .fade-leave-active {
 	transition-property: opacity;
 	transition-duration: .25s;

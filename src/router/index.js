@@ -34,7 +34,9 @@ export default new Router({
 			name: 'Style Guide',
 			component: indexes.style_guide,
 			children: [
-				{path: 'buttons',		name: 'Buttons',		component: style_guide.buttons}
+				{path: 'buttons',		name: 'Buttons',		component: style_guide.buttons},
+				{path: 'cards',			name: 'Cards',			component: style_guide.cards},
+				{path: 'tabs',			name: 'Tabs',			component: style_guide.tabs}
 			]
 		},
 		{path: '/async/',			name: 'Async',			component: indexes.async}

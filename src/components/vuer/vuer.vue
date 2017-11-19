@@ -20,62 +20,61 @@
 </template>
 
 <script>
-//import registry from './registry';
 import {mapGetters} from 'vuex'
+
 
 export default {
 	name: 'viewer',
+	props: ['name'],
 	data () {
 		return {
-			showcode: false,
-			code: '',
-			html_highlight: '',
 			scss: null,
 			pug: null,
 			component: null,
 			scssId: this.randomString(16),
 			pugId: this.randomString(16),
-			nameId: this.randomString(16)
+			nameId: this.randomString(16),
+			pugRE: new RegExp("(?<=<template lang=\"pug\">).*?(?=<\/template>)", "s"),
+			scssRE: new RegExp("(?<=<style lang=\"scss\" scoped>).*?(?=<\/style>)", "s")
 		}
 	},
 	mounted(){
-		
-		this.showSource();
-		let cssBlock = `
-			#${this.scssId}:checked ~ .content .content1,
-			#${this.pugId}:checked ~ .content .content2{
-				display:block;
-			}`;
-		let style = document.createElement('style');
-		style.type = 'text/css';
-		//style.styleSheet.cssText = cssBlock;
-		style.appendChild(document.createTextNode(cssBlock));
-
-		document.head.appendChild(style);
+		this.getSources();
+		this.addStyleBlock();
 	},
 	computed: {
 		...mapGetters(['getComponent'])
 	},
 	methods: {
-		showSource(){
+		addStyleBlock(){
+
+			let cssBlock = `
+				#${this.scssId}:checked ~ .content .content1,
+				#${this.pugId}:checked ~ .content .content2{
+					display:block;
+					font-size:14px;
+				}`;
+
+			let style = document.createElement('style');
+			style.type = 'text/css';
+			style.appendChild(document.createTextNode(cssBlock));
+
+			document.head.appendChild(style);
+		},
+		getSources(){
 			this.component = this.getComponent(this.name);
 			let source = 
 				this.component
 				.source
 				.replace(/\t/g,'  ');
 
-			var pugRE = new RegExp("(?<=<template lang=\"pug\">).*?(?=<\/template>)", "s");
-			var scssRE = new RegExp("(?<=<style lang=\"scss\" scoped>).*?(?=<\/style>)", "s");
-			//var pugPattern = /(?<=<template lang=pug>)/s;
-
-			this.pug = source.match(pugRE);
-			this.pug = this.pug[0].replace(/\n/g, ' ').trim();
-			this.scss = source.match(scssRE);
-			this.scss = this.scss[0].replace(/\n/g, ' ').trim();
-			this.showcode = true;
+			this.pug = this.extractCode(source, this.pugRE);
+			this.scss = this.extractCode(source, this.scssRE);
 		},
-		showLive(){
-			this.showcode = false;
+		extractCode(source, re){
+			let code = source.match(re);
+			let result = code[0].replace(/\n/g, ' ').trim();
+			return result;
 		},
 		randomString(length) {
 			var text = "";
@@ -85,8 +84,7 @@ export default {
 			}
 			return text;
 		}
-	},
-	props: ['name']
+	}
 }
 </script>
 
@@ -125,31 +123,34 @@ input:checked + label {
 	margin:10px;
 	display:grid;
 	grid-template-columns: 40% 60%;
+	grid-template-rows: 40px auto;
 	width:800px;
-	height:auto;
+	//height:auto;
 	transition: all .2s ease-out;
 
 	&__header{
-		grid-row:1;
-		grid-column:1/3;
+		grid-column:1;
 		text-align: center;
 		color:$vue_green;
-		font-size:20px;
+		font-size:40px;
 		font-weight:bold;
-		margin:4px;
+		text-shadow: 1px 1px darken($vue_green, 5%);
 	}
 
 	&__output{
+		grid-column:1;
 		display:flex;
 		align-items: center;
 		justify-content: center;
-		border-right:1px solid $border-color;
-		margin:10px;
 	}
 	&__code{
-		margin:10px;
+		grid-row:1/3;
+		grid-column:2;
+		padding:10px;
+		margin: 10px;
 		word-wrap:break-word;
 		transition: all .2s ease-out;
+		border-left :1px solid $border-color;
 	}
 }
 </style>

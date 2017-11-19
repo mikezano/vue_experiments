@@ -11,7 +11,8 @@ Vue.config.productionTip = false
 Vue.use(VuePrism)
 
 
-import 'prismjs/themes/prism-atomdark.css'
+import './prism-atomdark.css'
+//import 'prismjs/themes/prism.css'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 Vue.component('icon', Icon);
@@ -19,9 +20,9 @@ Vue.component('icon', Icon);
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  store: store,
-  router,
-  template: '<App/>',
-  components: { App }
+	el: '#app',
+	store: store,
+	router,
+	template: '<App/>',
+	components: { App }
 })
