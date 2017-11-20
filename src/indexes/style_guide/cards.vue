@@ -1,7 +1,7 @@
 <template lang="pug">
 	.container
-
 		vuer(name="Simple")
+		vuer(name="Corner-Color")
 </template>
 
 
