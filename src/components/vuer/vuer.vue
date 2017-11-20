@@ -117,7 +117,7 @@ input:checked + label {
 
 .ex{
 	border:1px solid $vue_green;
-	background-color: hsla(0,0%,60%,.3);
+	background-color:  hsla(0, 0%, 92%, .4);
 	margin:10px;
 	display:grid;
 	grid-template-columns: 40% 60%;
@@ -125,11 +125,6 @@ input:checked + label {
 	width:800px;
 	//height:auto;
 	transition: all .2s ease-out;
-
-	&:hover{
-		border-color: darken($vue_green, 10%);
-		box-shadow: 1px 1px 2px gray;
-	}
 
 	&__header{
 		grid-column:1;

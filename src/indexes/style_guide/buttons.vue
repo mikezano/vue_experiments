@@ -4,6 +4,7 @@
 		vuer(name="Spin")
 		vuer(name="Zoom")
 		vuer(name="Drop-Down")
+		vuer(name="Rollover")
 </template>
 
 

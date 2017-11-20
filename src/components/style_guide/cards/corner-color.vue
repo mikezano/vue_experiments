@@ -4,7 +4,7 @@
 		.blue-card__header 
 			.blue-card__header__indicator  
 			.blue-card__header__text Default
-		.blue-card__content &lt; Content &gt;
+		.blue-card__content &lt; Praesent massa libero, consectetur nec purus vitaet &gt;
 
 	.red-card
 		.red-card__header 
@@ -22,7 +22,7 @@
 		.green-card__header 
 			.green-card__header__indicator  
 			.green-card__header__text Success
-		.green-card__content &lt; Content &gt;
+		.green-card__content &lt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent massa libero, consectetur nec purus vitae, vestibulum porta dolor. Suspendisse euismod faucibus dui ut consectetur.  &gt;
 </template>
 
 
@@ -38,15 +38,21 @@
 	transition: all .2s ease-out;
 	background-color:white;
 	width: $width;
-	margin:10px;
+	margin:4px;
+
 	&:hover{box-shadow:2px 2px 4px gray;}
 	&__header{
 		&__indicator{
 			position:absolute;
 			margin-left:-1px;
+			margin-top:-1px;
 			border-style: solid;
 			border-width: 30px 30px 0 0;
-			border-color: $color transparent transparent transparent;
+			border-color: 
+				$color
+				transparent
+				transparent
+				transparent;
 		}
 		&__text{
 			text-align:center;

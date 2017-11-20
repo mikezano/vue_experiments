@@ -90,6 +90,7 @@ $menu_WIDTH: 200px;
 	position: absolute;
 	background: hsla(0, 0%, 92%, .95);
 	border:1px solid $vue_green;
+	font-weight:bold;
 
 	z-index: 100;
 	transition:
