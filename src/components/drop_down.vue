@@ -1,13 +1,12 @@
 <template lang="pug">
 	.container
 		ul.hList
-			li
-				a.menu(href="#click")
-					h2.menu-title Components
-					ul.menu-dropdown
-						router-link(to="/style_guide/buttons" tag="li") Buttons
-						router-link(to="/style_guide/cards" tag="li") Cards
-						router-link(to="/style_guide/tabs" tag="li") Tabs
+			li.menu
+				h2.menu-title Components
+				ul.menu-dropdown
+					router-link(to="/style_guide/buttons" tag="li") Buttons
+					router-link(to="/style_guide/cards" tag="li") Cards
+					router-link(to="/style_guide/tabs" tag="li") Tabs
 
 </template>
 
@@ -19,7 +18,7 @@ export default {name: 'Drop-Down'}
 <style lang="scss" scoped>
 @import '../sass/colors.scss';
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+//@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
 
 $vue_green: hsla(153, 50%, 48%, 1);
 
@@ -31,11 +30,6 @@ $vue_green: hsla(153, 50%, 48%, 1);
 
 
 h2{margin: 0; font-size:16px;}
-
-a {
-	text-decoration: none;
-	color: inherit;
-}
 
 li {
 	list-style-type:none;

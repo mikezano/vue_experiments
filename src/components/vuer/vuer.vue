@@ -52,7 +52,6 @@ export default {
 				#${this.scssId}:checked ~ .content .content1,
 				#${this.pugId}:checked ~ .content .content2{
 					display:block;
-					font-size:14px;
 				}`;
 
 			let style = document.createElement('style');
@@ -92,11 +91,12 @@ export default {
 
 @import '../../sass/global.scss';
 
-pre{
-	white-space: pre-wrap;
+.content > div { 
+	display:none; 
+	border-left:1px solid hsla(0,0%,70%,1);
+	font-size:14px;
+	padding: 0 10px;
 }
-
-.content > div { display:none; }
 input {display: none;}
 label {
 	display: inline-block; 
@@ -104,21 +104,19 @@ label {
 	font-weight: 600; 
 	text-align: center;
 	margin:0 2px;
-	border-bottom: 4px solid transparent;
+	border-bottom: 4px solid #bebebe;
 	transition: all .2s ease-out;
 }
 label:hover {
-	color: lighten($vue_green, 20%); 
 	cursor: pointer;
-	border-bottom: 4px solid lighten($vue_green, 20%);
+	border-bottom: 4px solid $vue_green;
 }
 input:checked + label {
-	border-bottom: 4px solid $vue_green;;
+	border-bottom: 4px solid $vue_green;
 }
 
 .ex{
-	$border-color: hsla(0,0%,60%,1);
-	border:1px solid $border-color;
+	border:1px solid $vue_green;
 	background-color: hsla(0,0%,60%,.3);
 	margin:10px;
 	display:grid;
@@ -128,13 +126,21 @@ input:checked + label {
 	//height:auto;
 	transition: all .2s ease-out;
 
+	&:hover{
+		border-color: darken($vue_green, 10%);
+		box-shadow: 1px 1px 2px gray;
+	}
+
 	&__header{
 		grid-column:1;
 		text-align: center;
-		color:$vue_green;
-		font-size:40px;
+		color: $vue_green_dark;
+
+		font-size:20px;
 		font-weight:bold;
-		text-shadow: 1px 1px darken($vue_green, 5%);
+		margin-top:14px;
+		margin-left:10px;
+		text-transform: uppercase;
 	}
 
 	&__output{
@@ -146,11 +152,15 @@ input:checked + label {
 	&__code{
 		grid-row:1/3;
 		grid-column:2;
-		padding:10px;
-		margin: 10px;
+
 		word-wrap:break-word;
 		transition: all .2s ease-out;
-		border-left :1px solid $border-color;
+		margin-top:10px;
+		
+		pre{
+			max-height:500px;
+			overflow:auto;
+		}
 	}
 }
 </style>
