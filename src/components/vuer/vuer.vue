@@ -117,7 +117,7 @@ input:checked + label {
 
 .ex{
 	border:1px solid $vue_green;
-	background-color:  hsla(0, 0%, 92%, .4);
+	background-color:  hsla(0, 0%, 92%, .5);
 	margin:10px;
 	display:grid;
 	grid-template-columns: 40% 60%;
