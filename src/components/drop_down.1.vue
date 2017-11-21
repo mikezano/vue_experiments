@@ -28,6 +28,7 @@ $vue_green: hsla(153, 50%, 48%, 1);
 	justify-content:center;
 }
 
+
 h2{margin: 0; font-size:16px;}
 
 li {

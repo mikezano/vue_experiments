@@ -6,14 +6,12 @@
 					.rollover__main GOOD
 					.rollover__sub 
 						icon(name="thumbs-up")
-
 		.bad
 			button.rollover
 				.rollover__container
 					.rollover__main BAD
 					.rollover__sub 
 						icon(name="thumbs-down")
-
 		.bad
 			button.rollover
 				.rollover__container
@@ -27,8 +25,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-@import '../../../sass/colors.scss';
 
 @mixin rollover($size, $color){
 
@@ -62,8 +58,7 @@
 			font-size: $size/3;
 		}
 	}
-	
 }
 .good{ @include rollover(50px, blue);}
-.bad{ @include rollover(60px, $vue_green);}
+.bad{ @include rollover(60px, red);}
 </style>

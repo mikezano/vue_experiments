@@ -32,10 +32,11 @@ export default new Router({
 			]
 		},
 		{
-			path: '/style_guide/',
-			name: 'Style Guide',
+			path: '/style_guide',
+			//name: 'Style Guide',  This generates a warning, confusing vue as to what the default path should be
 			component: indexes.style_guide,
 			children: [
+				{path: '/',				name: 'Home',			component: style_guide.home},
 				{path: 'buttons',		name: 'Buttons',		component: style_guide.buttons},
 				{path: 'cards',			name: 'Cards',			component: style_guide.cards},
 				{path: 'tabs',			name: 'Tabs',			component: style_guide.tabs}

@@ -1,19 +1,14 @@
-<template>
-	<div id="app" >
-		<div @click="toggleSideMenu" class="navicon">
-			<icon name="bars" scale="2"></icon>
-		</div>
-	<transition name="slide-menu">
-		<side_menu 
-			v-if="isShowingSideMenu" 
-			v-on:closeMenu="toggleSideMenu">
-		</side_menu>
-	</transition>
-	
-	<transition name="fade">
-		<router-view></router-view>
-	</transition>
-</div>
+<template lang="pug">
+	#app
+		.navicon(@click="toggleSideMenu")
+			icon(name="bars" scale="2")
+		transition(name="slide-menu")
+			side_menu(
+				v-if="isShowingSideMenu" 
+				v-on:closeMenu="toggleSideMenu")
+		
+		transition(name="fade")
+			router-view
 </template>
 
 <script>
@@ -25,9 +20,7 @@ import side_menu from './components/side_menu'
 export default {
 	name: 'app',
 		data () {
-			return {
-		isShowingSideMenu: false
-		}
+			return {isShowingSideMenu: false}
 	},
 	components:{
 		side_menu,

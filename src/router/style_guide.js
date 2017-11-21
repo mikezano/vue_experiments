@@ -1,9 +1,11 @@
 import buttons	from '@/indexes/style_guide/buttons'
 import cards	from '@/indexes/style_guide/cards'
-import tabs	from '@/indexes/style_guide/tabs'
+import tabs		from '@/indexes/style_guide/tabs'
+import home		from '@/indexes/style_guide/home'
 
 export default {
 	buttons,
 	cards,
-	tabs
+	tabs,
+	home
 }
