@@ -6,7 +6,7 @@
 				li.dd-menu-item A
 				li.dd-menu-item B
 				li.dd-menu-item C
-
+		dropdown
 </template>
 
 <script>
@@ -35,9 +35,6 @@ $vue_green: hsla(153, 50%, 48%, 1);
 
 $width: 200px;
 .dd{
-	border:1px solid black;
-
-
 	.dd-title{
 		color:white;
 		background-color: $vue_green;
@@ -62,6 +59,8 @@ $width: 200px;
 	}
 	.dd-menu{
 		padding:0;
+		border:1px solid green;
+		margin:0;
 	}
 	.dd-menu-item{
 		padding:0;
