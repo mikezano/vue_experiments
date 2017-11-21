@@ -35,6 +35,7 @@ $vue_green: hsla(153, 50%, 48%, 1);
 
 $width: 200px;
 .dd{
+	position:relative;
 	.dd-title{
 		color:white;
 		background-color: $vue_green;
@@ -59,8 +60,14 @@ $width: 200px;
 	}
 	.dd-menu{
 		padding:0;
-		border:1px solid green;
+		border-left:1px solid green;
+		border-right:1px solid green;
+		border-bottom:1px solid green;
 		margin:0;
+		position: absolute;
+
+		z-index:99;
+		width:100%;
 	}
 	.dd-menu-item{
 		padding:0;
