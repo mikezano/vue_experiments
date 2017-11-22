@@ -63,11 +63,11 @@ $width: 200px;
 		opacity:1;
 
 		transition: 
-			0.5s height cubic-bezier(.73,.32,.34,1.5),
-			0.5s padding cubic-bezier(.73,.32,.34,1.5),
-			0.5s margin cubic-bezier(.73,.32,.34,1.5),
+			0.4s height cubic-bezier(.73,.32,.34,1.5),
+			0.2s padding cubic-bezier(.73,.32,.34,1.5),
+			0.2s margin cubic-bezier(.73,.32,.34,1.5),
 			0.2s background-color,
-		 	0.2s 0.3s opacity;
+		 	0.2s 0.2s opacity;
 
 		&:hover{background: rgba(0,0,0,0.1);}
 		&:first-child{margin-top:10px;}
