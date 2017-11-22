@@ -143,7 +143,7 @@ $menu_WIDTH: 200px;
 		0.5s 0.1s padding,
 		0.5s 0.1s margin,
 		0.3s color,
-		0.6s visibility;
+		2.6s visibility;
 	z-index: 99;
 }
 </style>

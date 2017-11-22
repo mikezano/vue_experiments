@@ -3,9 +3,9 @@
 		.dd
 			h2.dd-title Components
 			ul.dd-menu
-				li.dd-menu-item A
-				li.dd-menu-item B
-				li.dd-menu-item C
+				li.dd-menu-item Buttons
+				li.dd-menu-item Cards
+				li.dd-menu-item Tabs
 		dropdown
 </template>
 
@@ -23,10 +23,6 @@ export default {
 <style lang="scss" scoped>
 @import '../sass/colors.scss';
 
-//@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
-
-$vue_green: hsla(153, 50%, 48%, 1);
-
 .container{
 	display:flex;
 	align-items:center;
@@ -39,10 +35,12 @@ $width: 200px;
 	.dd-title{
 		color:white;
 		background-color: $vue_green;
-		padding:6px 4px;
+		padding:8px 4px;
 		width: $width;
 		margin:0;
-		position:relative;
+		//position:relative;
+		font-size:16px;
+		text-transform: uppercase;
 
 		&:before{
 			content: "";
@@ -53,9 +51,6 @@ $width: 200px;
 			position: absolute;
 			top: 100%;
 			z-index: 101;
-			transition:
-				0.2s 0.2s border-top ease-out,
-				0.3s border-top-color;
 		}
 	}
 	.dd-menu{
@@ -65,34 +60,53 @@ $width: 200px;
 		border-bottom:1px solid green;
 		margin:0;
 		position: absolute;
-
+		box-sizing:border-box;
 		z-index:99;
 		width:100%;
+		background: hsla(0, 0%, 92%, .98);
+
 	}
 	.dd-menu-item{
-		padding:0;
-		margin:0;
-		list-style-type: none;
-		background-color: white;
 		height:30px;
 		overflow:hidden;
+		line-height:30px;
+		cursor:pointer;
+		opacity:1;
 
 		transition: 
 			0.5s height cubic-bezier(.73,.32,.34,1.5),
 			0.5s padding cubic-bezier(.73,.32,.34,1.5),
 			0.5s margin cubic-bezier(.73,.32,.34,1.5),
-			0.5s 0.2s color,
-			0.2s background-color;
+			0.2s background-color,
+		 	0.2s 0.3s opacity;
 
-		.dd-menu-item{
-			//padding:6px 0;
-		}
+		&:hover{background: rgba(0,0,0,0.1);}
+		&:first-child{margin-top:10px;}
+		&:last-child{margin-bottom:10px;}
 	}
 }
 
-.dd:not(:hover) > .dd-menu > *{
-	visibility: hidden;
-	height:0;
+.dd:not(:hover) {
+
+	.dd-menu {
+		border:none;
+		background-color:hsla(0,0,85%,1);
+		.dd-menu-item{
+			opacity: 0;
+			height:0;
+			padding:0;
+			margin: 0;
+			color: rgba(25,25,25,0);
+			transition: 
+				0.5s 0.1s height,
+				0.5s 0.1s padding,
+				0.5s 0.1s margin,
+				0.3s color;
+			z-index: 99;
+
+
+		}
+	}
 }
 
 

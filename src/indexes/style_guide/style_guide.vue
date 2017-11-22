@@ -1,6 +1,6 @@
 <template lang="pug">
 	.container
-		dropdown
+		dropdownV2
 
 		transition(name="fade")
 			router-view
@@ -10,6 +10,7 @@
 
 import vuer from '@/components/vuer/vuer'
 import dropdown from '@/components/drop_down'
+import dropdownV2 from '@/components/drop_down_v2'
 
 export default {
 	name: 'style_guide_index',
@@ -34,7 +35,7 @@ export default {
 	},
 	components:{
 		vuer,
-		dropdown
+		dropdownV2
 	}
 }
 </script>
@@ -42,4 +43,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
+.container{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	flex-direction:column;
+}
 </style>
