@@ -12,12 +12,6 @@
 					.rollover__main BAD
 					.rollover__sub 
 						icon(name="thumbs-down")
-		.bad
-			button.rollover
-				.rollover__container
-					.rollover__main NO
-					.rollover__sub 
-						icon(name="danger")
 </template>
 
 <script>

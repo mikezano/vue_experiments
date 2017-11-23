@@ -1,3 +1,4 @@
+
 <template lang="pug">
 	.dd
 		h2.dd-title Components
@@ -12,10 +13,10 @@ export default {
 	name: 'dropdown_v2'
 }
 </script>
-
+<!-- https://codepen.io/kkrueger/pen/qfoLa -->
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import '../sass/colors.scss';
+@import '../../../sass/colors.scss';
 
 
 $width: 200px;

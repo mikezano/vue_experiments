@@ -1,7 +1,7 @@
 <template lang="pug">
 	.container
-		dropdownV2
 
+		drop_down(v-bind:items="routes.style_guide()")
 		transition(name="fade")
 			router-view
 </template>
@@ -9,33 +9,23 @@
 <script>
 
 import vuer from '@/components/vuer/vuer'
-import dropdown from '@/components/drop_down'
-import dropdownV2 from '@/components/drop_down_v2'
+import drop_down from '@/components/drop_down'
+import routes from '@/models/routes'
 
 export default {
 	name: 'style_guide_index',
 	data () {
 		return {
 			msg: 'Zano',
-
-		}	
+			routes: routes
+		}
 	},
 	mounted(){
-
-	},
-	methods:{
-		getFile (method, url, done) {
-			var xhr = new XMLHttpRequest();
-			xhr.open(method, url);
-			xhr.onload = function () {
-				done(xhr.response);
-			};
-			xhr.send();
-		}
+		console.log(this.routes.style_guide());
 	},
 	components:{
 		vuer,
-		dropdownV2
+		drop_down
 	}
 }
 </script>
@@ -48,5 +38,8 @@ export default {
 	align-items:center;
 	justify-content:center;
 	flex-direction:column;
+	h1{
+		width:600px;
+	}
 }
 </style>

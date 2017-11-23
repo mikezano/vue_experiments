@@ -39,7 +39,8 @@ export default new Router({
 				{path: '/',				name: 'Home',			component: style_guide.home},
 				{path: 'buttons',		name: 'Buttons',		component: style_guide.buttons},
 				{path: 'cards',			name: 'Cards',			component: style_guide.cards},
-				{path: 'tabs',			name: 'Tabs',			component: style_guide.tabs}
+				{path: 'tabs',			name: 'Tabs',			component: style_guide.tabs},
+				{path: 'drop_downs',	name: 'DropDowns',		component: style_guide.drop_downs}
 			]
 		},
 		{path: '/async/',			name: 'Async',			component: indexes.async}
