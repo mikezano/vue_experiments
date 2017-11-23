@@ -5,7 +5,7 @@
 
 <script>
 	export default{
-		name: 'Zoom'
+		name: "zoom"
 	}
 </script>
 

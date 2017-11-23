@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	export default {name: "Rollover"}
+	export default {name: "rollover"}
 </script>
 
 <style lang="scss" scoped>

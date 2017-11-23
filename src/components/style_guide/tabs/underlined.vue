@@ -29,7 +29,7 @@
 
 <script>
 	export default{
-		name: 'Corner-Color'
+		name: 'underlined'
 	}
 </script>
 

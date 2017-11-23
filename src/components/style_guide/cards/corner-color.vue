@@ -37,7 +37,7 @@
 
 <script>
 	export default{
-		name: 'Corner-Color'
+		name: "corner-color"
 	}
 </script>
 

@@ -11,7 +11,7 @@
 
 <script>
 export default {
-	name: 'zoom',
+	name: 'zoom_anom',
 	data: () => {
 		return {
 			isFading:true,

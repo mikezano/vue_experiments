@@ -15,10 +15,7 @@
 
 <script>
 
-	export default{
-		name: 'Circle',
-
-	}
+	export default{name: "circle"}
 </script>
 
 <style lang="scss" scoped>
