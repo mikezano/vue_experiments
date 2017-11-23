@@ -3,7 +3,12 @@
 	.dd
 		h2.dd-title Components
 		ul.dd-menu
-			router-link.dd-menu-item(v-for="item in items" :to="item.path" tag="li" :key="item.name") {{item.name}}
+			router-link.dd-menu-item(
+				v-for="item in items"
+				:to="item.path"
+				tag="li"
+				:key="item.name")
+					| {{item.name}}
 
 </template>
 

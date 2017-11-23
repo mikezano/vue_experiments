@@ -20,9 +20,6 @@ export default {
 			routes: routes
 		}
 	},
-	mounted(){
-		console.log(this.routes.style_guide());
-	},
 	components:{
 		vuer,
 		drop_down
