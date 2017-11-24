@@ -1,72 +1,63 @@
 <template lang="pug">
 .container
-	.blue.card
-		.card__header 
-			.card__header__indicator  
-			.card__header__text Default
-		.card__content &lt; Praesent massa libero, consectetur nec purus vitaet &gt;
-
-	.red.card
-		.card__header 
-			.card__header__indicator  
-			.card__header__text Default
-		.card__content &lt; Praesent massa libero, consectetur nec purus vitaet &gt;
-
-	.green.card
-		.card__header 
-			.card__header__indicator  
-			.card__header__text Default
-		.card__content &lt; Praesent massa libero, consectetur nec purus vitaet &gt;
-
-	.orange.card
-		.card__header 
-			.card__header__indicator  
-			.card__header__text Default
-		.card__content &lt; Praesent massa libero, consectetur nec purus vitaet &gt;
-
+	input#tab1(type="radio" name="tabs" checked)
+	label(for="tab1") Tab 1
+	input#tab2(type="radio" name="tabs")
+	label(for="tab2") Tab 2
+	input#tab3(type="radio" name="tabs")
+	label(for="tab3") Tab 3
+	input#tab4(type="radio" name="tabs")
+	label(for="tab4") Tab 4
+	.content
+		.content1
+			| Content for Tab 1
+		.content2
+			| Content for Tab 2
+		.content3
+			img(src="https://tinyurl.com/y8n2spmr" width="200" height="200")
+		.content4
+			| Content for Tab 4
 </template>
 
 
 <script>
-	export default{
-		name: 'underlined'
-	}
+	export default{name: "underlined"}
 </script>
 
 <style lang="scss" scoped>
-@mixin corner-card($color, $width){
-	$el: card;
-	&.#{$el}{
-		border:1px solid lighten($color,20%);
-		transition: all .2s ease-out;
-		background-color:white;
-		width: $width;
-		margin:4px;
-		&:hover{box-shadow:2px 2px 4px gray;}
-		.#{$el}__header{
-			&__indicator{
-				position:absolute;
-				margin-left:-1px;
-				margin-top:-1px;
-				border-style: solid;
-				border-width: 30px 30px 0 0;
-				border-color: 
-					$color
-					transparent
-					transparent
-					transparent;
-			}
-			&__text{
-				text-align:center;
-				font-weight:bold;
-				line-height:30px;
-			}
-		}
-		#{$el}__content{padding:4px;}
-	}
+
+@import '../../../sass/colors.scss';
+
+
+.content > div { 
+	display:none; 
+	font-size:14px;
+	padding: 10px;
+	height:300px;
+	border-bottom:1px solid lightgray;
 }
-.blue{@include corner-card(#007bff, 200px);}
-.red{@include corner-card(#CC0000, 100px);}
-.green{@include corner-card(#FF8800, 90%);}
-.orange{@include corner-card(#007E33, 250px);}
+input {display: none;}
+label {
+	display: inline-block; 
+	padding: 5px 10px; 
+	text-align: center;
+	margin:0 2px;
+	border-bottom: 4px solid #bebebe;
+	transition: all .2s ease-out;
+}
+label:hover {
+	cursor: pointer;
+	border-bottom: 4px solid $vue_green;
+}
+input:checked + label {
+	border-bottom: 4px solid $vue_green;
+}
+
+#tab1:checked ~ .content .content1,
+#tab2:checked ~ .content .content2,
+#tab3:checked ~ .content .content3,
+#tab4:checked ~ .content .content4{
+	display:block;
+};
+
 </style>

@@ -53,18 +53,18 @@ export default {
 
 html{overflow-y:scroll;}
 
-.fade-enter-active, .fade-leave-active {
-	transition-property: opacity;
-	transition-duration: .25s;
-}
+// .fade-enter-active, .fade-leave-active {
+// 	transition-property: opacity;
+// 	transition-duration: .25s;
+// }
 
-.fade-enter-active {
-	transition-delay: .25s;
-}
+// .fade-enter-active {
+// 	transition-delay: .25s;
+// }
 
-.fade-enter, .fade-leave-active {
-	opacity: 0
-}
+// .fade-enter, .fade-leave-active {
+// 	opacity: 0
+// }
 
 body{
 	$yellow: hsla(0, 0%, 90%,1);

@@ -1,20 +1,36 @@
 <template lang="pug">
 	.container
-		.dd
-			h2.dd-title Components
-			ul.dd-menu
-				li.dd-menu-item Buttons
-				li.dd-menu-item Cards
-				li.dd-menu-item Tabs
-		dropdown
+		button(@click="add") Add
+		button(@click="remove") Remove
+		button(@click="shuffle") Shuffle
+		transition-group(name="list" tag="p")
+			span.list-item(v-for="item in items" v-bind:key="item")
+				| {{item}}
 </template>
 
 <script>
-import dropdown from '@/components/drop_down'
+
 export default {
 	name: 'test',
-	components: {
-		dropdown
+	data () {
+		return{
+			items:[1,2,3,4,5,6,7,8,9],
+			nextNum:10
+		}
+	},
+	methods:{
+		randomIndex(){
+			return Math.floor(Math.random() * this.items.length)
+		},
+		add(){
+			this.items.splice(this.randomIndex(), 0, this.nextNum++)
+		},
+		remove(){
+			this.items.splice(this.randomIndex(), 1)
+		},
+		shuffle() {
+			this.items = this._.shuffle(this.items)
+		}
 	}
 }
 </script>
@@ -29,205 +45,23 @@ export default {
 	justify-content:center;
 }
 
-$width: 200px;
-.dd{
-	position:relative;
-	.dd-title{
-		color:white;
-		background-color: $vue_green;
-		padding:8px 4px;
-		width: $width;
-		margin:0;
-		//position:relative;
-		font-size:16px;
-		text-transform: uppercase;
-
-		&:before{
-			content: "";
-			display: block;
-			border-top: 5px solid $vue_green;
-			border-left: ($width / 2) solid transparent;
-			border-right: ($width / 2) solid transparent;
-			position: absolute;
-			top: 100%;
-			z-index: 101;
-		}
-	}
-	.dd-menu{
-		padding:0;
-		border-left:1px solid green;
-		border-right:1px solid green;
-		border-bottom:1px solid green;
-		margin:0;
-		position: absolute;
-		box-sizing:border-box;
-		z-index:99;
-		width:100%;
-		background: hsla(0, 0%, 92%, .98);
-
-	}
-	.dd-menu-item{
-		height:30px;
-		overflow:hidden;
-		line-height:30px;
-		cursor:pointer;
-		opacity:1;
-
-		transition: 
-			0.5s height cubic-bezier(.73,.32,.34,1.5),
-			0.5s padding cubic-bezier(.73,.32,.34,1.5),
-			0.5s margin cubic-bezier(.73,.32,.34,1.5),
-			0.2s background-color,
-		 	0.2s 0.3s opacity;
-
-		&:hover{background: rgba(0,0,0,0.1);}
-		&:first-child{margin-top:10px;}
-		&:last-child{margin-bottom:10px;}
-	}
+.list-item {
+	transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 10s;
+}
+.list-leave-active{
+	position:absolute;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-move{
+	transition: transform 1s;
 }
 
-.dd:not(:hover) {
-
-	.dd-menu {
-		border:none;
-		background-color:hsla(0,0,85%,1);
-		.dd-menu-item{
-			opacity: 0;
-			height:0;
-			padding:0;
-			margin: 0;
-			color: rgba(25,25,25,0);
-			transition: 
-				0.5s 0.1s height,
-				0.5s 0.1s padding,
-				0.5s 0.1s margin,
-				0.3s color;
-			z-index: 99;
-
-
-		}
-	}
-}
-
-
-
-
-// h2{margin: 0; font-size:16px;}
-
-// li {
-// 	list-style-type:none;
-// }
-// *{
-// 	box-sizing: border-box;
-// }
-
-// $menu_WIDTH: 200px;
-
-// .menu {
-// 	display: block;
-// 	position: relative;
-// 	cursor: pointer;	
-
-// 	.menu-title {
-// 		display: block;
-// 		width: $menu_WIDTH;
-// 		height: 40px;
-// 		padding: 12px 0 0;
-// 		background: $vue_green;
-// 		text-align: center;
-// 		color: white;
-// 		font-weight: bold;
-// 		text-transform: uppercase;
-// 		transition: 0.3s background-color;
-
-// 		&:hover{
-// 			background: darken($vue_green, 10%);
-// 			&:before{
-// 				border-top-color: darken($vue_green, 10%);
-// 			}
-// 		}
-
-// 		//This is the 'arrow' part
-// 		&:before{
-// 			content: "";
-// 			display: block;
-// 			height: 0;
-// 			border-top: 5px solid $vue_green;
-// 			border-left: ($menu_WIDTH / 2) solid transparent;
-// 			border-right: ($menu_WIDTH / 2) solid transparent;
-// 			border-bottom: 0 solid #dddddd;
-// 			position: absolute;
-// 			top: 100%;
-// 			left: 0;
-// 			z-index: 101;
-// 			transition:
-// 				0.2s 0.2s border-top ease-out,
-// 				0.3s border-top-color;
-// 		}
-// 	}
-// }
-
-// .menu-dropdown {
-// 	min-width: 100%;
-// 	padding: 15px 0;
-// 	position: absolute;
-// 	background: hsla(0, 0%, 92%, .98);
-// 	border:1px solid $vue_green;
-// 	font-weight:bold;
-
-// 	z-index: 100;
-// 	transition:
-// 		0.5s padding,
-// 		0.5s background,
-// 		0.5s border;
-// }
-
-// .menu:not(:hover) > .menu-dropdown {
-// 	padding: 0;
-// 	background: #dddddd;
-// 	border:none;
-// 	z-index: 99;
-// }
-
-// .menu:not(:hover) > .menu-dropdown:after {
-// 	border-top-color: #dddddd;
-// }
-
-// .menu:not(:hover) > .menu-title:after {
-// 	border-bottom-color: #dddddd;
-// }
-
-// .menu-dropdown > * {
-// 	overflow: hidden;
-// 	height: 30px;
-// 	padding: 5px 10px;
-// 	background: rgba(0,0,0,0);
-// 	white-space: nowrap;
-// 	transition: 
-// 		0.5s height cubic-bezier(.73,.32,.34,1.5),
-// 		0.5s padding cubic-bezier(.73,.32,.34,1.5),
-// 		0.5s margin cubic-bezier(.73,.32,.34,1.5),
-// 		0.5s 0.2s color,
-// 		0.2s background-color;
-// }
-
-// .menu-dropdown > li:hover {
-// 	background: rgba(0,0,0,0.1);
-// }
-
-// .menu:not(:hover) > .menu-dropdown > * {
-// 	visibility: hidden;
-// 	height: 0;
-// 	padding-top: 0;
-// 	padding-bottom: 0;
-// 	margin: 0;
-// 	color: rgba(25,25,25,0);
-// 	transition: 
-// 		0.5s 0.1s height,
-// 		0.5s 0.1s padding,
-// 		0.5s 0.1s margin,
-// 		0.3s color,
-// 		0.6s visibility;
-// 	z-index: 99;
-// }
 </style>
