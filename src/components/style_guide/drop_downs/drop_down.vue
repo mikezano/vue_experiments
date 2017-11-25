@@ -3,14 +3,20 @@
 	.dd
 		h2.dd-title Components
 		ul.dd-menu
-			router-link.dd-menu-item(to="/style_guide/buttons" tag="li") Buttons
-			router-link.dd-menu-item(to="/style_guide/cards" tag="li") Cards
-			router-link.dd-menu-item(to="/style_guide/tabs" tag="li") Tabs			
+			li.dd-menu-item
+				a(href="http://google.com") Google
+			li.dd-menu-item
+				a(href="http://duckduckgo.com") Duck Duck Go
+			li.dd-menu-item
+				a(href="http://bing.com") Bing
+			li.dd-menu-item
+				a(href="http://yahoo.com") Yahoo
+
 </template>
 
 <script>
 export default {
-	name: 'dropdown_v2'
+	name: 'drop_down'
 }
 </script>
 <!-- https://codepen.io/kkrueger/pen/qfoLa -->
