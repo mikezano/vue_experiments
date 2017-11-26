@@ -63,12 +63,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 $vue_green: hsla(153, 50%, 48%, 1);
 
 .fade-enter-active, .fade-leave-active{
-	transition: opacity 5s ease-in;
+	transition: opacity 1s ease-in;
 }
 .fade-enter, .fade-leave-to{
 	opacity:0;

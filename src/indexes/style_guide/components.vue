@@ -8,6 +8,7 @@
 
 <script>
 import vuer from '@/components/vuer/vuer'
+//https://stackoverflow.com/questions/42199872/is-it-possible-to-import-vue-files-in-a-folder
 const files = require.context(`../../components/style_guide/`, true, /\.vue$/);
 
 export default {
@@ -28,12 +29,10 @@ export default {
 	},
 	methods: {
 		routeChanged(route){
-			//https://stackoverflow.com/questions/42199872/is-it-possible-to-import-vue-files-in-a-folder
 			this.currentSet = this.hash[route.params.component];
-			//this.nextRoute = this.hash[route.params.component];
-			//this.currentSet = [];
 		},
 		buildRegistry(){
+			//Loading file names from a folder
 			files.keys().forEach((key) => {
 				let path = (key.replace(/(\.\/|\.vue)/g, ''));
 				let folder = path.substr(0, path.indexOf('/'));

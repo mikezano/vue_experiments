@@ -7,7 +7,7 @@
 				v-if="isShowingSideMenu" 
 				v-on:closeMenu="toggleSideMenu")
 		
-		transition(name="fade")
+		transition(name="fade" mode="out-in")
 			router-view
 </template>
 
@@ -49,35 +49,35 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-html{overflow-y:scroll;}
 
-// .fade-enter-active, .fade-leave-active {
-// 	transition-property: opacity;
-// 	transition-duration: .25s;
+// html{overflow-y:scroll;}
+
+// body{
+// 	$yellow: hsla(0, 0%, 90%,1);
+// 	$yellow2: hsla(0, 0%, 93%, 1);
+// 	$yellow3: rgba(240,166,17,0);
+// 	background:
+// 		radial-gradient(circle farthest-side at 0% 50%, $yellow2 23.5%, $yellow3 0)21px 30px,
+// 		radial-gradient(circle farthest-side at 0% 50%, $yellow 24%, $yellow3 0) 19px 30px,
+// 		linear-gradient($yellow2 14%, $yellow3 0, $yellow3 85%, $yellow2 0)0 0,
+// 		linear-gradient(150deg,$yellow2 24%,$yellow 0,$yellow 26%, $yellow3 0, $yellow3 74%,$yellow 0,$yellow 76%, $yellow2 0)0 0,
+// 		linear-gradient(30deg,$yellow2 24%,$yellow 0,$yellow 26%, $yellow3 0, $yellow3 74%,$yellow 0,$yellow 76%, $yellow2 0)0 0,
+// 		linear-gradient(90deg,$yellow 2%,$yellow2 0,$yellow2 98%,$yellow 0%)0 0 $yellow2;
+// 	background-size:40px 60px;
+// 	background-color:blue !important;
+
 // }
 
-// .fade-enter-active {
-// 	transition-delay: .25s;
-// }
-
-// .fade-enter, .fade-leave-active {
-// 	opacity: 0
-// }
-
-body{
-	$yellow: hsla(0, 0%, 90%,1);
-	$yellow2: hsla(0, 0%, 93%, 1);
-	$yellow3: rgba(240,166,17,0);
-	background:
-		radial-gradient(circle farthest-side at 0% 50%, $yellow2 23.5%, $yellow3 0)21px 30px,
-		radial-gradient(circle farthest-side at 0% 50%, $yellow 24%, $yellow3 0) 19px 30px,
-		linear-gradient($yellow2 14%, $yellow3 0, $yellow3 85%, $yellow2 0)0 0,
-		linear-gradient(150deg,$yellow2 24%,$yellow 0,$yellow 26%, $yellow3 0, $yellow3 74%,$yellow 0,$yellow 76%, $yellow2 0)0 0,
-		linear-gradient(30deg,$yellow2 24%,$yellow 0,$yellow 26%, $yellow3 0, $yellow3 74%,$yellow 0,$yellow 76%, $yellow2 0)0 0,
-		linear-gradient(90deg,$yellow 2%,$yellow2 0,$yellow2 98%,$yellow 0%)0 0 $yellow2;
-		background-size:40px 60px;
+.fade-enter-active, .fade-leave-active{
+	transition: opacity .25s ease-in;
+}
+.fade-enter, .fade-leave-to{
+	opacity:0;
+}
+.fade-enter-to, .fade-leave{
+	opacity:1;
 }
 
 #app {
