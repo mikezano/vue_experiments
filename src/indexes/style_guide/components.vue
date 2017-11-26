@@ -12,21 +12,19 @@ const files = require.context(`../../components/style_guide/`, true, /\.vue$/);
 
 export default {
 	name: 'index_cards',
+	props: ['component'],
 	data () {
 		return {
 			hash: [],
 			currentSet: null,
-			listLength: 0,
 			nextRoute: null
 		}
 	},
 	beforeMount(){
 		this.buildRegistry();
-		this.currentSet = this.hash[this.component];
-		this.listLength = this.currentSet.length;
 	},
-	components: {
-		vuer
+	mounted(){
+		this.currentSet = this.hash[this.component];
 	},
 	methods: {
 		routeChanged(route){
@@ -54,7 +52,9 @@ export default {
 	watch :{
 		'$route': 'routeChanged'
 	},
-	props: ['component']
+	components: {
+		vuer
+	}
 }
 </script>
 
