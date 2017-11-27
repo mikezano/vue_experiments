@@ -4,10 +4,6 @@
 			label Select Example
 				.caret &dArr;
 			ul
-				router-link(to="/animations/fade" tag="li") Fade
-				router-link(to="/animations/fade_detailed" tag="li") Fade Detailed
-				router-link(to="/animations/zoom" tag="li") Zoom
-				router-link(to="/animations/template" tag="li") Template
 				router-link(to="/animations/timeline" tag="li") Timeline
 				router-link(to="/animations/examples_grid" tag="li") Examples Grid
 				router-link(to="/animations/simple_examples" tag="li") Simple Examples

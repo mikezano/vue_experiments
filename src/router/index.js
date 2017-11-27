@@ -20,11 +20,7 @@ export default new Router({
 			path: '/animations/',
 			component: indexes.animations,
 			children: [
-				{path: 'template',			name: 'Animation Template',			component: animate.template},
-				{path: 'fade',				name: 'Animation Fade',				component: animate.fade},
-				{path: 'fade_detailed',		name: 'Animation Fade Detailed',	component: animate.fade_detailed},
 				{path: 'timeline',			name: 'Animation Timeline',			component: animate.timeline},
-				{path: 'zoom',				name: 'Animation Zoom',				component: animate.zoom},
 				{path: 'examples_grid',		name: 'Examples Grid',				component: animate.examples_grid},
 				{path: 'simple_examples',	name: 'Samples Grid',				component: animate.simple_examples},
 				{path: 'in_out_examples',	name: 'In & Outs',					component: animate.in_out_examples},
