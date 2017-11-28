@@ -2,7 +2,7 @@
 	.container
 
 		drop_down(v-bind:items="routes.style_guide()")
-		transition(name="fade")
+		transition(name="fade" mode="out-in")
 			router-view
 </template>
 
@@ -29,6 +29,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+
+@import '../../sass/fade';
 
 .container{
 	display:flex;
