@@ -46,7 +46,7 @@
 .orange{color:#FF8800;}
 .green{color:#007E33;}
 
-@mixin side-card($color, $width){
+@mixin side-card($color, $width, $sizing){
 	$gray: hsla(0,0%,80%, 1);
 	$el: scard;
 	&.#{$el}{
@@ -55,37 +55,35 @@
 		margin:10px;
 		background-color:white;
 		.#{$el}__indicator{
-			
 			background-color: $color;
-			width:24px;
+			width: $sizing + ($sizing/2px);
 			overflow: hidden;
 			text-overflow:ellipsis;
 			
 			&__text{
 				color:white;
 				font-weight:bold;
-				font-size:16px;
-				margin-left:20px;
+				font-size:$sizing;
+				margin-left:$sizing + ($sizing/8px);
 				margin-top:10px;
 				transform: rotate(90deg);
 				transform-origin: 0 0;
 			}
 		}
 		.#{$el}__content{
-
+			width:100%;
 			padding:8px 10px;
 			font-size:14px;
 			text-align:left;
-				//dl{width:$width; }
-				dt{
+				 dl{display:flex; flex-wrap:wrap;}
+				 dt{
 					font-weight:bold;
-					float: left;
-					width:100px;
+					width: 30%;
 				}
-				dd{color: black;}
+				dd{color: black; width:50%; margin:0;}
 		}
 	}
 }
-.alphabet{@include side-card(#007bff, 250px);}
-.colors{@include side-card(#CC0000, 250px);}
+.alphabet{@include side-card(#007bff, 250px, 16px);}
+.colors{@include side-card(#CC0000, 250px, 24px);}
 </style>
