@@ -2,9 +2,9 @@
 .simple-card
 	.simple-card__header Header
 		button.circle
-			i.fa.fa-truck
+			icon(name="truck" scale="1")
 		button.circle
-			i.fa.fa-refresh
+			icon(name="refresh" scale="1")
 	.simple-card__content All your content goes here
 </template>
 
