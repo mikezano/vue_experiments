@@ -36,11 +36,12 @@
 </script>
 
 <style lang="scss" scoped>
-@mixin side-card($color, $titleSize){
+@mixin side-card($color, $titleSize, $width){
 	$gray: hsla(0,0%,80%, 1);
 	$el: scard;
 	&.#{$el}{
 		display:flex;
+		width:$width;
 		border:1px solid $gray;
 		margin:10px;
 		background-color:white;
@@ -67,8 +68,8 @@
 		}
 	}
 }
-.fruits{@include side-card(#007bff, 16px);}
-.colors{@include side-card(#CC0000, 30px);}
+.fruits{@include side-card(#007bff, 16px, 160px);}
+.colors{@include side-card(#CC0000, 30px, 90%);}
 
 .fruits, .colors{
 	.red{color:#CC0000;}

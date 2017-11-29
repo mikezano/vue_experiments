@@ -36,8 +36,14 @@
 	&:hover{
 		transform:scale(1.1);
 		box-shadow:3px 3px 5px hsla(0,0%,0%,.5);
-		background-color:lighten($color, 5%);
+		background-color:lighten($color, 3%);
 		cursor:pointer;
+	}
+	&:active{
+		transform:scale(1.05);
+	}
+	&:focus{
+		outline:none;
 	}
 }
 .circle{@include circle-btn(lightblue, 24px);}

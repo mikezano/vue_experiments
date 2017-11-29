@@ -1,6 +1,13 @@
 <template lang="pug">
-	button.spin-btn
-		icon(name="plus" scale="5")
+	.container
+		button.plus.spin-btn
+			icon(name="plus" scale="5")
+		button.wheelchair.spin-btn
+			icon(name="wheelchair-alt" scale="4")
+		button.refresh.spin-btn
+			icon(name="refresh" scale="2")
+		button.cog.spin-btn
+			icon(name="cog" scale="1")
 </template>
 
 
@@ -11,24 +18,29 @@
 </script>
 
 <style lang="scss" scoped>
+@import '../../../sass/colors';
+@mixin spin-btn($color){
+	$selector: spin-btn;
+	&.#{$selector}{
+		margin:10px;
+		border:none;
+		background:none;
+		color:$color;
+		transition: 
+			transform .5s ease-out, 
+			color .7s ease-out;
+		display:flex;
+		align-items: center;
+		justify-content: center;
 
-.spin-btn{
-	font-size:80px;
-	$color:hsla(350, 50%, 30%, 100%);
-	border:none;
-	background:none;
-	color:$color;
-	transition: 
-		transform .5s ease-out, 
-		color .7s ease-out;
-	transform-origin: 50% 50%;
-	display:flex;
-	align-items: center;
-	justify-content: center;
-
-	&:hover{
-		color:lighten($color,10%);
-		transform: rotate(360deg);
+		&:hover{
+			color:lighten($color,10%);
+			transform: rotate(360deg);
+		}
 	}
 }
+.plus{@include spin-btn($bs_green);}
+.wheelchair{@include spin-btn($bs_blue);}
+.refresh{@include spin-btn($bs_orange);}
+.cog{@include spin-btn($bs_red);}
 </style>

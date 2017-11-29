@@ -19,7 +19,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+@import '../../../sass/colors';
 @mixin rollover($size, $color){
 
 	margin:4px;
@@ -53,6 +53,6 @@
 		}
 	}
 }
-.good{ @include rollover(50px, blue);}
-.bad{ @include rollover(60px, red);}
+.good{ @include rollover(50px, $bs_blue);}
+.bad{ @include rollover(60px, $bs_red);}
 </style>
