@@ -17,6 +17,9 @@ export const store = new Vuex.Store({
 		getComponent: (state, getters)=>(name)=>{
 			var result  = state.registry.get(name);
 			return result;
+		},
+		getComponents: (state, getters)=>()=>{
+			return state.registry.components;
 		}
 	},
 	mutations: {

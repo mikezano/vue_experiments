@@ -2,11 +2,27 @@
 	.container
 		h1 Looking for interesting components to use in your app?
 
-		a(href="#") Download style_guide.scss
+		a( @click="collectMixins()") Download style_guide.scss
 </template>
 
 <script>
-export default {name: 'style_guide_index_home'}
+import {mapGetters} from 'vuex'
+
+export default {
+	name: 'style_guide_index_home',
+	methods: {
+		collectMixins(){
+			let components = this.getComponents();
+			components.forEach(element => {
+				console.log(element)
+			});
+		}
+	},
+	computed: {
+		...mapGetters(['getComponents'])
+	},	
+
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
