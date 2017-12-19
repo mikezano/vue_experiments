@@ -30,12 +30,14 @@ export default {
 		return {
 			scss: null,
 			pug: null,
+			mixin: null,
 			component: null,
 			scssId: this.randomString(16),
 			pugId: this.randomString(16),
 			nameId: this.randomString(16),
 			pugRE: new RegExp("(?<=<template lang=\"pug\">).*?(?=<\/template>)", "s"),
-			scssRE: new RegExp("(?<=<style lang=\"scss\" scoped>).*?(?=<\/style>)", "s")
+			scssRE: new RegExp("(?<=<style lang=\"scss\" scoped>).*?(?=<\/style>)", "s"),
+			mixinRE: new RegExp("@mixin.*?end", "s")
 		}
 	},
 	mounted(){
@@ -69,9 +71,13 @@ export default {
 
 			this.pug = this.extractCode(source, this.pugRE);
 			this.scss = this.extractCode(source, this.scssRE);
+			this.mixin = this.extractCode(source, this.mixinRE);
 		},
 		extractCode(source, re){
 			let code = source.match(re);
+			if(this.name == "circle"){
+				console.log(code);
+			}
 			let result = code[0].replace(/\n/g, ' ').trim();
 			return result;
 		},

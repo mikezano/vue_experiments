@@ -45,7 +45,7 @@
 	&:focus{
 		outline:none;
 	}
-}
+}//end
 .circle{@include circle-btn(lightblue, 24px);}
 .circle-lg{@include circle-btn(pink, 48px);}
 </style>
