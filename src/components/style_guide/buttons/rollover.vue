@@ -48,7 +48,7 @@
 		}
 		&__sub{
 			height:$size;
-			line-height:$size;		
+			line-height:$size;
 			font-size: $size/3;
 		}
 	}

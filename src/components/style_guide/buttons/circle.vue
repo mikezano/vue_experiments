@@ -14,7 +14,6 @@
 
 
 <script>
-
 	export default{name: "circle"}
 </script>
 
@@ -45,7 +44,7 @@
 	&:focus{
 		outline:none;
 	}
-}//end
+}//cricle-btn end
 .circle{@include circle-btn(lightblue, 24px);}
 .circle-lg{@include circle-btn(pink, 48px);}
 </style>

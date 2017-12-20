@@ -38,7 +38,7 @@
 			transform: rotate(360deg);
 		}
 	}
-}
+}//spin-btn end
 .plus{@include spin-btn($bs_green);}
 .wheelchair{@include spin-btn($bs_blue);}
 .refresh{@include spin-btn($bs_orange);}
