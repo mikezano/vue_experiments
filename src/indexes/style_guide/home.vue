@@ -2,7 +2,7 @@
 	.container
 		h1 Looking for interesting components to use in your app?
 
-		a( @click="collectMixins()" :href="test()") Download style_guide.scss
+		a( @click="collectMixins()") Download style_guide.scss
 </template>
 
 <script>
@@ -23,9 +23,22 @@ export default {
 			this.names.forEach(n => {
 				let component = this.getComponent(n);
 				let source = component.source.replace(/\t/g,'  ');
-				this.allMixins += source.match(this.mixinRE) + "\n\n";
+				this.allMixins += source.match(this.mixinRE) + "\n\n\r";
 			});
 			console.log(this.allMixins);
+			this.download();
+		},
+		download(){
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.allMixins));
+			element.setAttribute('download', 'mixins.txt');
+
+			element.style.display = 'none';
+			document.body.appendChild(element);
+
+			element.click();
+
+			document.body.removeChild(element);
 		},
 		test(){
 			return "data:text/plain;charset=utf-8,"+ encodeURIComponent(this.allMixins);
