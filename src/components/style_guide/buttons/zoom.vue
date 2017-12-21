@@ -1,23 +1,32 @@
 <template lang="pug">
-	button.zoom Zoom
+	div
+		button.small-zoom.zoom-btn Small Zoom
+		button.big-zoom.zoom-btn Big Zoom
 </template>
 
 
 <script>
 	export default{
-		name: "zoom"
+		name: 'zoom'
 	}
 </script>
 
 <style lang="scss" scoped>
 
-.zoom{
-	$shadow-color: black;
-	box-shadow:2px 2px 4px $shadow-color;
-	transition: all .2s ease-in-out;
-	&:hover{
-		transform: scale(1.1);
-		box-shadow:4px 4px 8px lighten($shadow-color, 20%);
+@mixin zoom-btn($scale){
+	$selector: zoom-btn;
+	&.#{$selector}{
+		$shadow-color: black;
+		box-shadow:2px 2px 4px $shadow-color;
+		transition: all .2s ease-in-out;
+		color:blue;
+		&:hover{
+			transform: scale($scale);
+			box-shadow:4px 4px 8px lighten($shadow-color, 20%);
+		}
 	}
-}
+}//zoom-btn end
+.small-zoom{@include zoom-btn(1.1);}
+.big-zoom{@include zoom-btn(2.0);}
+
 </style>

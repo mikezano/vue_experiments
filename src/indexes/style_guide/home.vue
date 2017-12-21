@@ -1,7 +1,6 @@
 <template lang="pug">
 	.container
 		h1 Looking for interesting components to use in your app?
-
 		a( @click="collectMixins()") Download style_guide.scss
 </template>
 
@@ -20,18 +19,22 @@ export default {
 	methods: {
 		collectMixins(){
 			this.allMixins = "";
-			this.names.forEach(n => {
-				let component = this.getComponent(n);
-				let source = component.source.replace(/\t/g,'  ');
-				this.allMixins += source.match(this.mixinRE) + "\n\n\r";
-			});
-			console.log(this.allMixins);
+			let style_guide_files = this.getFiles();
+
+			for(var folder in style_guide_files){
+				style_guide_files[folder].forEach(file=>{
+					let component = this.getComponent(file);
+					let source = component.source.replace(/\t/g,'  ');
+					let result = source.match(this.mixinRE);
+					this.allMixins += result!= null ? result + "\n\r" : "";
+				});
+			}
 			this.download();
 		},
 		download(){
 			var element = document.createElement('a');
 			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(this.allMixins));
-			element.setAttribute('download', 'mixins.txt');
+			element.setAttribute('download', 'mixins.scss');
 
 			element.style.display = 'none';
 			document.body.appendChild(element);
@@ -45,7 +48,7 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['getComponent'])
+		...mapGetters(['getComponent', 'getFiles'])
 	},
 }
 </script>

@@ -22,7 +22,6 @@
 <script>
 import {mapGetters} from 'vuex'
 
-
 export default {
 	name: 'viewer',
 	props: ['name'],
@@ -37,7 +36,6 @@ export default {
 			nameId: this.randomString(16),
 			pugRE: new RegExp("(?<=<template lang=\"pug\">).*?(?=<\/template>)", "s"),
 			scssRE: new RegExp("(?<=<style lang=\"scss\" scoped>).*?(?=<\/style>)", "s"),
-			mixinRE: new RegExp("@mixin.*?end", "s")
 		}
 	},
 	mounted(){
@@ -71,7 +69,6 @@ export default {
 
 			this.pug = this.extractCode(source, this.pugRE);
 			this.scss = this.extractCode(source, this.scssRE);
-			this.mixin = this.extractCode(source, this.mixinRE);
 		},
 		extractCode(source, re){
 			let code = source.match(re);
