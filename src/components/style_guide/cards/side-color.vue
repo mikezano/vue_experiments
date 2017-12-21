@@ -67,7 +67,7 @@
 			text-align:left;
 		}
 	}
-}
+}//side-card end
 .fruits{@include side-card(#007bff, 16px, 160px);}
 .colors{@include side-card(#CC0000, 30px, 90%);}
 

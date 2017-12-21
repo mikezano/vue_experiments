@@ -76,7 +76,7 @@
 			font-size:14px;
 		}
 	}
-}
+}//corner-card end
 .blue{@include corner-card(#007bff, 200px);}
 .red{@include corner-card(#CC0000, 250px);}
 .green{@include corner-card(#FF8800, 90%);}
